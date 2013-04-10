@@ -80,22 +80,22 @@ class Unknown:
 class loginWithIdentityCredentialForCertificateResult:
   """
   Attributes:
-   - keepLoggedIn
-   - systemName
    - certificate
+   - code
   """
 
   thrift_spec = (
     None, # 0
-    (1, TType.BOOL, 'keepLoggedIn', None, None, ), # 1
-    (2, TType.I32, 'systemName', None, None, ), # 2
-    (3, TType.STRING, 'certificate', None, None, ), # 3
+    (1, TType.STRING, 'certificate', None, None, ), # 1
+    None, # 2
+    None, # 3
+    None, # 4
+    (5, TType.I32, 'code', None, None, ), # 5
   )
 
-  def __init__(self, keepLoggedIn=None, systemName=None, certificate=None,):
-    self.keepLoggedIn = keepLoggedIn
-    self.systemName = systemName
+  def __init__(self, certificate=None, code=None,):
     self.certificate = certificate
+    self.code = code
 
   def read(self, iprot):
     if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
@@ -107,18 +107,13 @@ class loginWithIdentityCredentialForCertificateResult:
       if ftype == TType.STOP:
         break
       if fid == 1:
-        if ftype == TType.BOOL:
-          self.keepLoggedIn = iprot.readBool();
-        else:
-          iprot.skip(ftype)
-      elif fid == 2:
-        if ftype == TType.I32:
-          self.systemName = iprot.readI32();
-        else:
-          iprot.skip(ftype)
-      elif fid == 3:
         if ftype == TType.STRING:
           self.certificate = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 5:
+        if ftype == TType.I32:
+          self.code = iprot.readI32();
         else:
           iprot.skip(ftype)
       else:
@@ -131,17 +126,13 @@ class loginWithIdentityCredentialForCertificateResult:
       oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
       return
     oprot.writeStructBegin('loginWithIdentityCredentialForCertificateResult')
-    if self.keepLoggedIn is not None:
-      oprot.writeFieldBegin('keepLoggedIn', TType.BOOL, 1)
-      oprot.writeBool(self.keepLoggedIn)
-      oprot.writeFieldEnd()
-    if self.systemName is not None:
-      oprot.writeFieldBegin('systemName', TType.I32, 2)
-      oprot.writeI32(self.systemName)
-      oprot.writeFieldEnd()
     if self.certificate is not None:
-      oprot.writeFieldBegin('certificate', TType.STRING, 3)
+      oprot.writeFieldBegin('certificate', TType.STRING, 1)
       oprot.writeString(self.certificate)
+      oprot.writeFieldEnd()
+    if self.code is not None:
+      oprot.writeFieldBegin('code', TType.I32, 5)
+      oprot.writeI32(self.code)
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
     oprot.writeStructEnd()

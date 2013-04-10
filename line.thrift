@@ -8,9 +8,8 @@ struct Unknown {
 }
 
 struct loginWithIdentityCredentialForCertificateResult {
-  1: bool keepLoggedIn,
-  2: i32 systemName,
-  3: string certificate 
+  1: string certificate, 
+  5: i32 code
 }
 
 struct loginWithIdentityCredentialForCertificateResult2 {
