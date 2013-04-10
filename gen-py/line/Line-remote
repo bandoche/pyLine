@@ -24,6 +24,7 @@ if len(sys.argv) <= 1 or sys.argv[1] == '--help':
   print ''
   print 'Functions:'
   print '  loginWithIdentityCredentialForCertificateResult loginWithIdentityCredentialForCertificate(string cr1, string cr2, bool flag1, string ip, string comname, i32 val1, string cr5)'
+  print '  loginWithIdentityCredentialForCertificateResult2 loginWithIdentityCredentialForCertificate2(string cr1, string cr2, bool flag1, string ip, string comname, i32 val1, string cr5)'
   print ''
   sys.exit(0)
 
@@ -80,6 +81,12 @@ if cmd == 'loginWithIdentityCredentialForCertificate':
     print 'loginWithIdentityCredentialForCertificate requires 7 args'
     sys.exit(1)
   pp.pprint(client.loginWithIdentityCredentialForCertificate(args[0],args[1],eval(args[2]),args[3],args[4],eval(args[5]),args[6],))
+
+elif cmd == 'loginWithIdentityCredentialForCertificate2':
+  if len(args) != 7:
+    print 'loginWithIdentityCredentialForCertificate2 requires 7 args'
+    sys.exit(1)
+  pp.pprint(client.loginWithIdentityCredentialForCertificate2(args[0],args[1],eval(args[2]),args[3],args[4],eval(args[5]),args[6],))
 
 else:
   print 'Unrecognized method %s' % cmd
