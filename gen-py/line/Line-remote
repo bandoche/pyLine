@@ -23,8 +23,8 @@ if len(sys.argv) <= 1 or sys.argv[1] == '--help':
   print 'Usage: ' + sys.argv[0] + ' [-h host[:port]] [-u url] [-f[ramed]] function [arg1 [arg2...]]'
   print ''
   print 'Functions:'
-  print '  loginWithIdentityCredentialForCertificateResult loginWithIdentityCredentialForCertificate(string cr1, string cr2, bool flag1, string ip, string comname, i32 val1, string cr5)'
-  print '  loginWithIdentityCredentialForCertificateResult2 loginWithIdentityCredentialForCertificate2(string cr1, string cr2, bool flag1, string ip, string comname, i32 val1, string cr5)'
+  print '  loginWithIdentityCredentialForCertificateResult loginWithIdentityCredentialForCertificate(string str1, string str2, string rsakey1, string rsacipher, bool b5, string ip, string comname, i32 i8, string str9)'
+  print '  loginWithIdentityCredentialForCertificateResult loginWithVerifierForCertificate(string verifier)'
   print ''
   sys.exit(0)
 
@@ -77,16 +77,16 @@ client = Line.Client(protocol)
 transport.open()
 
 if cmd == 'loginWithIdentityCredentialForCertificate':
-  if len(args) != 7:
-    print 'loginWithIdentityCredentialForCertificate requires 7 args'
+  if len(args) != 9:
+    print 'loginWithIdentityCredentialForCertificate requires 9 args'
     sys.exit(1)
-  pp.pprint(client.loginWithIdentityCredentialForCertificate(args[0],args[1],eval(args[2]),args[3],args[4],eval(args[5]),args[6],))
+  pp.pprint(client.loginWithIdentityCredentialForCertificate(args[0],args[1],args[2],args[3],eval(args[4]),args[5],args[6],eval(args[7]),args[8],))
 
-elif cmd == 'loginWithIdentityCredentialForCertificate2':
-  if len(args) != 7:
-    print 'loginWithIdentityCredentialForCertificate2 requires 7 args'
+elif cmd == 'loginWithVerifierForCertificate':
+  if len(args) != 1:
+    print 'loginWithVerifierForCertificate requires 1 args'
     sys.exit(1)
-  pp.pprint(client.loginWithIdentityCredentialForCertificate2(args[0],args[1],eval(args[2]),args[3],args[4],eval(args[5]),args[6],))
+  pp.pprint(client.loginWithVerifierForCertificate(args[0],))
 
 else:
   print 'Unrecognized method %s' % cmd

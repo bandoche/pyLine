@@ -9,6 +9,3 @@
 from thrift.Thrift import TType, TMessageType, TException, TApplicationException
 from ttypes import *
 
-HELLO_IN_KOREAN = "an-nyoung-ha-se-yo"
-HELLO_IN_FRENCH = "bonjour!"
-HELLO_IN_JAPANESE = "konichiwa!"

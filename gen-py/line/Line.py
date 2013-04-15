@@ -18,29 +18,25 @@ except:
 
 
 class Iface:
-  def loginWithIdentityCredentialForCertificate(self, cr1, cr2, flag1, ip, comname, val1, cr5):
+  def loginWithIdentityCredentialForCertificate(self, str1, str2, rsakey1, rsacipher, b5, ip, comname, i8, str9):
     """
     Parameters:
-     - cr1
-     - cr2
-     - flag1
+     - str1
+     - str2
+     - rsakey1
+     - rsacipher
+     - b5
      - ip
      - comname
-     - val1
-     - cr5
+     - i8
+     - str9
     """
     pass
 
-  def loginWithIdentityCredentialForCertificate2(self, cr1, cr2, flag1, ip, comname, val1, cr5):
+  def loginWithVerifierForCertificate(self, verifier):
     """
     Parameters:
-     - cr1
-     - cr2
-     - flag1
-     - ip
-     - comname
-     - val1
-     - cr5
+     - verifier
     """
     pass
 
@@ -52,30 +48,34 @@ class Client(Iface):
       self._oprot = oprot
     self._seqid = 0
 
-  def loginWithIdentityCredentialForCertificate(self, cr1, cr2, flag1, ip, comname, val1, cr5):
+  def loginWithIdentityCredentialForCertificate(self, str1, str2, rsakey1, rsacipher, b5, ip, comname, i8, str9):
     """
     Parameters:
-     - cr1
-     - cr2
-     - flag1
+     - str1
+     - str2
+     - rsakey1
+     - rsacipher
+     - b5
      - ip
      - comname
-     - val1
-     - cr5
+     - i8
+     - str9
     """
-    self.send_loginWithIdentityCredentialForCertificate(cr1, cr2, flag1, ip, comname, val1, cr5)
+    self.send_loginWithIdentityCredentialForCertificate(str1, str2, rsakey1, rsacipher, b5, ip, comname, i8, str9)
     return self.recv_loginWithIdentityCredentialForCertificate()
 
-  def send_loginWithIdentityCredentialForCertificate(self, cr1, cr2, flag1, ip, comname, val1, cr5):
+  def send_loginWithIdentityCredentialForCertificate(self, str1, str2, rsakey1, rsacipher, b5, ip, comname, i8, str9):
     self._oprot.writeMessageBegin('loginWithIdentityCredentialForCertificate', TMessageType.CALL, self._seqid)
     args = loginWithIdentityCredentialForCertificate_args()
-    args.cr1 = cr1
-    args.cr2 = cr2
-    args.flag1 = flag1
+    args.str1 = str1
+    args.str2 = str2
+    args.rsakey1 = rsakey1
+    args.rsacipher = rsacipher
+    args.b5 = b5
     args.ip = ip
     args.comname = comname
-    args.val1 = val1
-    args.cr5 = cr5
+    args.i8 = i8
+    args.str9 = str9
     args.write(self._oprot)
     self._oprot.writeMessageEnd()
     self._oprot.trans.flush()
@@ -94,47 +94,35 @@ class Client(Iface):
       return result.success
     raise TApplicationException(TApplicationException.MISSING_RESULT, "loginWithIdentityCredentialForCertificate failed: unknown result");
 
-  def loginWithIdentityCredentialForCertificate2(self, cr1, cr2, flag1, ip, comname, val1, cr5):
+  def loginWithVerifierForCertificate(self, verifier):
     """
     Parameters:
-     - cr1
-     - cr2
-     - flag1
-     - ip
-     - comname
-     - val1
-     - cr5
+     - verifier
     """
-    self.send_loginWithIdentityCredentialForCertificate2(cr1, cr2, flag1, ip, comname, val1, cr5)
-    return self.recv_loginWithIdentityCredentialForCertificate2()
+    self.send_loginWithVerifierForCertificate(verifier)
+    return self.recv_loginWithVerifierForCertificate()
 
-  def send_loginWithIdentityCredentialForCertificate2(self, cr1, cr2, flag1, ip, comname, val1, cr5):
-    self._oprot.writeMessageBegin('loginWithIdentityCredentialForCertificate2', TMessageType.CALL, self._seqid)
-    args = loginWithIdentityCredentialForCertificate2_args()
-    args.cr1 = cr1
-    args.cr2 = cr2
-    args.flag1 = flag1
-    args.ip = ip
-    args.comname = comname
-    args.val1 = val1
-    args.cr5 = cr5
+  def send_loginWithVerifierForCertificate(self, verifier):
+    self._oprot.writeMessageBegin('loginWithVerifierForCertificate', TMessageType.CALL, self._seqid)
+    args = loginWithVerifierForCertificate_args()
+    args.verifier = verifier
     args.write(self._oprot)
     self._oprot.writeMessageEnd()
     self._oprot.trans.flush()
 
-  def recv_loginWithIdentityCredentialForCertificate2(self, ):
+  def recv_loginWithVerifierForCertificate(self, ):
     (fname, mtype, rseqid) = self._iprot.readMessageBegin()
     if mtype == TMessageType.EXCEPTION:
       x = TApplicationException()
       x.read(self._iprot)
       self._iprot.readMessageEnd()
       raise x
-    result = loginWithIdentityCredentialForCertificate2_result()
+    result = loginWithVerifierForCertificate_result()
     result.read(self._iprot)
     self._iprot.readMessageEnd()
     if result.success is not None:
       return result.success
-    raise TApplicationException(TApplicationException.MISSING_RESULT, "loginWithIdentityCredentialForCertificate2 failed: unknown result");
+    raise TApplicationException(TApplicationException.MISSING_RESULT, "loginWithVerifierForCertificate failed: unknown result");
 
 
 class Processor(Iface, TProcessor):
@@ -142,7 +130,7 @@ class Processor(Iface, TProcessor):
     self._handler = handler
     self._processMap = {}
     self._processMap["loginWithIdentityCredentialForCertificate"] = Processor.process_loginWithIdentityCredentialForCertificate
-    self._processMap["loginWithIdentityCredentialForCertificate2"] = Processor.process_loginWithIdentityCredentialForCertificate2
+    self._processMap["loginWithVerifierForCertificate"] = Processor.process_loginWithVerifierForCertificate
 
   def process(self, iprot, oprot):
     (name, type, seqid) = iprot.readMessageBegin()
@@ -164,19 +152,19 @@ class Processor(Iface, TProcessor):
     args.read(iprot)
     iprot.readMessageEnd()
     result = loginWithIdentityCredentialForCertificate_result()
-    result.success = self._handler.loginWithIdentityCredentialForCertificate(args.cr1, args.cr2, args.flag1, args.ip, args.comname, args.val1, args.cr5)
+    result.success = self._handler.loginWithIdentityCredentialForCertificate(args.str1, args.str2, args.rsakey1, args.rsacipher, args.b5, args.ip, args.comname, args.i8, args.str9)
     oprot.writeMessageBegin("loginWithIdentityCredentialForCertificate", TMessageType.REPLY, seqid)
     result.write(oprot)
     oprot.writeMessageEnd()
     oprot.trans.flush()
 
-  def process_loginWithIdentityCredentialForCertificate2(self, seqid, iprot, oprot):
-    args = loginWithIdentityCredentialForCertificate2_args()
+  def process_loginWithVerifierForCertificate(self, seqid, iprot, oprot):
+    args = loginWithVerifierForCertificate_args()
     args.read(iprot)
     iprot.readMessageEnd()
-    result = loginWithIdentityCredentialForCertificate2_result()
-    result.success = self._handler.loginWithIdentityCredentialForCertificate2(args.cr1, args.cr2, args.flag1, args.ip, args.comname, args.val1, args.cr5)
-    oprot.writeMessageBegin("loginWithIdentityCredentialForCertificate2", TMessageType.REPLY, seqid)
+    result = loginWithVerifierForCertificate_result()
+    result.success = self._handler.loginWithVerifierForCertificate(args.verifier)
+    oprot.writeMessageBegin("loginWithVerifierForCertificate", TMessageType.REPLY, seqid)
     result.write(oprot)
     oprot.writeMessageEnd()
     oprot.trans.flush()
@@ -187,34 +175,40 @@ class Processor(Iface, TProcessor):
 class loginWithIdentityCredentialForCertificate_args:
   """
   Attributes:
-   - cr1
-   - cr2
-   - flag1
+   - str1
+   - str2
+   - rsakey1
+   - rsacipher
+   - b5
    - ip
    - comname
-   - val1
-   - cr5
+   - i8
+   - str9
   """
 
   thrift_spec = (
     None, # 0
-    (1, TType.STRING, 'cr1', None, None, ), # 1
-    (2, TType.STRING, 'cr2', None, None, ), # 2
-    (3, TType.BOOL, 'flag1', None, None, ), # 3
-    (4, TType.STRING, 'ip', None, None, ), # 4
-    (5, TType.STRING, 'comname', None, None, ), # 5
-    (6, TType.I32, 'val1', None, None, ), # 6
-    (7, TType.STRING, 'cr5', None, None, ), # 7
+    (1, TType.STRING, 'str1', None, None, ), # 1
+    (2, TType.STRING, 'str2', None, None, ), # 2
+    (3, TType.STRING, 'rsakey1', None, None, ), # 3
+    (4, TType.STRING, 'rsacipher', None, None, ), # 4
+    (5, TType.BOOL, 'b5', None, None, ), # 5
+    (6, TType.STRING, 'ip', None, None, ), # 6
+    (7, TType.STRING, 'comname', None, None, ), # 7
+    (8, TType.I32, 'i8', None, None, ), # 8
+    (9, TType.STRING, 'str9', None, None, ), # 9
   )
 
-  def __init__(self, cr1=None, cr2=None, flag1=None, ip=None, comname=None, val1=None, cr5=None,):
-    self.cr1 = cr1
-    self.cr2 = cr2
-    self.flag1 = flag1
+  def __init__(self, str1=None, str2=None, rsakey1=None, rsacipher=None, b5=None, ip=None, comname=None, i8=None, str9=None,):
+    self.str1 = str1
+    self.str2 = str2
+    self.rsakey1 = rsakey1
+    self.rsacipher = rsacipher
+    self.b5 = b5
     self.ip = ip
     self.comname = comname
-    self.val1 = val1
-    self.cr5 = cr5
+    self.i8 = i8
+    self.str9 = str9
 
   def read(self, iprot):
     if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
@@ -227,37 +221,47 @@ class loginWithIdentityCredentialForCertificate_args:
         break
       if fid == 1:
         if ftype == TType.STRING:
-          self.cr1 = iprot.readString();
+          self.str1 = iprot.readString();
         else:
           iprot.skip(ftype)
       elif fid == 2:
         if ftype == TType.STRING:
-          self.cr2 = iprot.readString();
+          self.str2 = iprot.readString();
         else:
           iprot.skip(ftype)
       elif fid == 3:
-        if ftype == TType.BOOL:
-          self.flag1 = iprot.readBool();
+        if ftype == TType.STRING:
+          self.rsakey1 = iprot.readString();
         else:
           iprot.skip(ftype)
       elif fid == 4:
         if ftype == TType.STRING:
-          self.ip = iprot.readString();
+          self.rsacipher = iprot.readString();
         else:
           iprot.skip(ftype)
       elif fid == 5:
-        if ftype == TType.STRING:
-          self.comname = iprot.readString();
+        if ftype == TType.BOOL:
+          self.b5 = iprot.readBool();
         else:
           iprot.skip(ftype)
       elif fid == 6:
-        if ftype == TType.I32:
-          self.val1 = iprot.readI32();
+        if ftype == TType.STRING:
+          self.ip = iprot.readString();
         else:
           iprot.skip(ftype)
       elif fid == 7:
         if ftype == TType.STRING:
-          self.cr5 = iprot.readString();
+          self.comname = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 8:
+        if ftype == TType.I32:
+          self.i8 = iprot.readI32();
+        else:
+          iprot.skip(ftype)
+      elif fid == 9:
+        if ftype == TType.STRING:
+          self.str9 = iprot.readString();
         else:
           iprot.skip(ftype)
       else:
@@ -270,33 +274,41 @@ class loginWithIdentityCredentialForCertificate_args:
       oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
       return
     oprot.writeStructBegin('loginWithIdentityCredentialForCertificate_args')
-    if self.cr1 is not None:
-      oprot.writeFieldBegin('cr1', TType.STRING, 1)
-      oprot.writeString(self.cr1)
+    if self.str1 is not None:
+      oprot.writeFieldBegin('str1', TType.STRING, 1)
+      oprot.writeString(self.str1)
       oprot.writeFieldEnd()
-    if self.cr2 is not None:
-      oprot.writeFieldBegin('cr2', TType.STRING, 2)
-      oprot.writeString(self.cr2)
+    if self.str2 is not None:
+      oprot.writeFieldBegin('str2', TType.STRING, 2)
+      oprot.writeString(self.str2)
       oprot.writeFieldEnd()
-    if self.flag1 is not None:
-      oprot.writeFieldBegin('flag1', TType.BOOL, 3)
-      oprot.writeBool(self.flag1)
+    if self.rsakey1 is not None:
+      oprot.writeFieldBegin('rsakey1', TType.STRING, 3)
+      oprot.writeString(self.rsakey1)
+      oprot.writeFieldEnd()
+    if self.rsacipher is not None:
+      oprot.writeFieldBegin('rsacipher', TType.STRING, 4)
+      oprot.writeString(self.rsacipher)
+      oprot.writeFieldEnd()
+    if self.b5 is not None:
+      oprot.writeFieldBegin('b5', TType.BOOL, 5)
+      oprot.writeBool(self.b5)
       oprot.writeFieldEnd()
     if self.ip is not None:
-      oprot.writeFieldBegin('ip', TType.STRING, 4)
+      oprot.writeFieldBegin('ip', TType.STRING, 6)
       oprot.writeString(self.ip)
       oprot.writeFieldEnd()
     if self.comname is not None:
-      oprot.writeFieldBegin('comname', TType.STRING, 5)
+      oprot.writeFieldBegin('comname', TType.STRING, 7)
       oprot.writeString(self.comname)
       oprot.writeFieldEnd()
-    if self.val1 is not None:
-      oprot.writeFieldBegin('val1', TType.I32, 6)
-      oprot.writeI32(self.val1)
+    if self.i8 is not None:
+      oprot.writeFieldBegin('i8', TType.I32, 8)
+      oprot.writeI32(self.i8)
       oprot.writeFieldEnd()
-    if self.cr5 is not None:
-      oprot.writeFieldBegin('cr5', TType.STRING, 7)
-      oprot.writeString(self.cr5)
+    if self.str9 is not None:
+      oprot.writeFieldBegin('str9', TType.STRING, 9)
+      oprot.writeString(self.str9)
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
     oprot.writeStructEnd()
@@ -376,37 +388,21 @@ class loginWithIdentityCredentialForCertificate_result:
   def __ne__(self, other):
     return not (self == other)
 
-class loginWithIdentityCredentialForCertificate2_args:
+class loginWithVerifierForCertificate_args:
   """
   Attributes:
-   - cr1
-   - cr2
-   - flag1
-   - ip
-   - comname
-   - val1
-   - cr5
+   - verifier
   """
 
   thrift_spec = (
     None, # 0
-    (1, TType.STRING, 'cr1', None, None, ), # 1
-    (2, TType.STRING, 'cr2', None, None, ), # 2
-    (3, TType.BOOL, 'flag1', None, None, ), # 3
-    (4, TType.STRING, 'ip', None, None, ), # 4
-    (5, TType.STRING, 'comname', None, None, ), # 5
-    (6, TType.I32, 'val1', None, None, ), # 6
-    (7, TType.STRING, 'cr5', None, None, ), # 7
+    None, # 1
+    None, # 2
+    (3, TType.STRING, 'verifier', None, None, ), # 3
   )
 
-  def __init__(self, cr1=None, cr2=None, flag1=None, ip=None, comname=None, val1=None, cr5=None,):
-    self.cr1 = cr1
-    self.cr2 = cr2
-    self.flag1 = flag1
-    self.ip = ip
-    self.comname = comname
-    self.val1 = val1
-    self.cr5 = cr5
+  def __init__(self, verifier=None,):
+    self.verifier = verifier
 
   def read(self, iprot):
     if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
@@ -417,39 +413,9 @@ class loginWithIdentityCredentialForCertificate2_args:
       (fname, ftype, fid) = iprot.readFieldBegin()
       if ftype == TType.STOP:
         break
-      if fid == 1:
+      if fid == 3:
         if ftype == TType.STRING:
-          self.cr1 = iprot.readString();
-        else:
-          iprot.skip(ftype)
-      elif fid == 2:
-        if ftype == TType.STRING:
-          self.cr2 = iprot.readString();
-        else:
-          iprot.skip(ftype)
-      elif fid == 3:
-        if ftype == TType.BOOL:
-          self.flag1 = iprot.readBool();
-        else:
-          iprot.skip(ftype)
-      elif fid == 4:
-        if ftype == TType.STRING:
-          self.ip = iprot.readString();
-        else:
-          iprot.skip(ftype)
-      elif fid == 5:
-        if ftype == TType.STRING:
-          self.comname = iprot.readString();
-        else:
-          iprot.skip(ftype)
-      elif fid == 6:
-        if ftype == TType.I32:
-          self.val1 = iprot.readI32();
-        else:
-          iprot.skip(ftype)
-      elif fid == 7:
-        if ftype == TType.STRING:
-          self.cr5 = iprot.readString();
+          self.verifier = iprot.readString();
         else:
           iprot.skip(ftype)
       else:
@@ -461,34 +427,10 @@ class loginWithIdentityCredentialForCertificate2_args:
     if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
       oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
       return
-    oprot.writeStructBegin('loginWithIdentityCredentialForCertificate2_args')
-    if self.cr1 is not None:
-      oprot.writeFieldBegin('cr1', TType.STRING, 1)
-      oprot.writeString(self.cr1)
-      oprot.writeFieldEnd()
-    if self.cr2 is not None:
-      oprot.writeFieldBegin('cr2', TType.STRING, 2)
-      oprot.writeString(self.cr2)
-      oprot.writeFieldEnd()
-    if self.flag1 is not None:
-      oprot.writeFieldBegin('flag1', TType.BOOL, 3)
-      oprot.writeBool(self.flag1)
-      oprot.writeFieldEnd()
-    if self.ip is not None:
-      oprot.writeFieldBegin('ip', TType.STRING, 4)
-      oprot.writeString(self.ip)
-      oprot.writeFieldEnd()
-    if self.comname is not None:
-      oprot.writeFieldBegin('comname', TType.STRING, 5)
-      oprot.writeString(self.comname)
-      oprot.writeFieldEnd()
-    if self.val1 is not None:
-      oprot.writeFieldBegin('val1', TType.I32, 6)
-      oprot.writeI32(self.val1)
-      oprot.writeFieldEnd()
-    if self.cr5 is not None:
-      oprot.writeFieldBegin('cr5', TType.STRING, 7)
-      oprot.writeString(self.cr5)
+    oprot.writeStructBegin('loginWithVerifierForCertificate_args')
+    if self.verifier is not None:
+      oprot.writeFieldBegin('verifier', TType.STRING, 3)
+      oprot.writeString(self.verifier)
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
     oprot.writeStructEnd()
@@ -508,14 +450,14 @@ class loginWithIdentityCredentialForCertificate2_args:
   def __ne__(self, other):
     return not (self == other)
 
-class loginWithIdentityCredentialForCertificate2_result:
+class loginWithVerifierForCertificate_result:
   """
   Attributes:
    - success
   """
 
   thrift_spec = (
-    (0, TType.STRUCT, 'success', (loginWithIdentityCredentialForCertificateResult2, loginWithIdentityCredentialForCertificateResult2.thrift_spec), None, ), # 0
+    (0, TType.STRUCT, 'success', (loginWithIdentityCredentialForCertificateResult, loginWithIdentityCredentialForCertificateResult.thrift_spec), None, ), # 0
   )
 
   def __init__(self, success=None,):
@@ -532,7 +474,7 @@ class loginWithIdentityCredentialForCertificate2_result:
         break
       if fid == 0:
         if ftype == TType.STRUCT:
-          self.success = loginWithIdentityCredentialForCertificateResult2()
+          self.success = loginWithIdentityCredentialForCertificateResult()
           self.success.read(iprot)
         else:
           iprot.skip(ftype)
@@ -545,7 +487,7 @@ class loginWithIdentityCredentialForCertificate2_result:
     if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
       oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
       return
-    oprot.writeStructBegin('loginWithIdentityCredentialForCertificate2_result')
+    oprot.writeStructBegin('loginWithVerifierForCertificate_result')
     if self.success is not None:
       oprot.writeFieldBegin('success', TType.STRUCT, 0)
       self.success.write(oprot)
