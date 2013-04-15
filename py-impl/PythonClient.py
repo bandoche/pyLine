@@ -65,7 +65,7 @@ try:
     #session_key - something be taken after proper login - i think it is not used for initial login. it is retrieved after another authorization
     session_key = "0000000000000000000000000000000000000000000000000000000000000000"
 
-    msg = client.loginWithIdentityCredentialForCertificate(keyname, cipher.encode("hex"), True, netaddr, comname, 2, session_key)
+    msg = client.loginWithIdentityCredentialForCertificate(None, None, keyname, cipher.encode("hex"), True, netaddr, comname, 2, '')
     print ("(loginWithIdentityCredentialForCertificate) = ", msg)
 
     transport.close()
