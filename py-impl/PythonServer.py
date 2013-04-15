@@ -22,8 +22,8 @@ class LineHandler:
     self.log = {}
 
 
-  def loginWithIdentityCredentialForCertificate(self, cr1, cr2, flag1, ip, comname, val1, cr5):
-    print "loginWithIdentityCredentialForCertificate() - ", cr1, cr2, flag1, ip, comname, val1, cr5
+  def loginWithIdentityCredentialForCertificate(self, str1, str2, rsakey1, rsacipher, b5, ip, comname, i8, str9):
+    print "loginWithIdentityCredentialForCertificate() - ", str1, str2, rsakey1, rsacipher, b5, ip, comname, i8, str9
 
     result = loginWithIdentityCredentialForCertificateResult(key64=None, code=3, line_access=None, verifier='VERIFIERzzzzzzzzzzzzzzzzzzzzzzzz', auth_digit='8190')
     return result

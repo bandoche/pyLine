@@ -21,7 +21,9 @@ import socket
 try:
     # Make socket
     # make Reverse proxy for NHN Line (gd2.line.naver.jp) if you want to see the traffic. otherwise, just connect to https://gd2.line.naver.jp
-    transport = THttpClient.THttpClient('http://localhost:8080/api/v4/TalkService.do')
+
+    # transport = THttpClient.THttpClient('http://localhost:8080/api/v4/TalkService.do')
+    transport = THttpClient.THttpClient('http://localhost:30303/')
 
     # this is important. Line server won't allow you to connect unless acceptable Line Application. We pretend to Line for OS X
     transport.setCustomHeaders({'User-Agent': 'DESKTOP:MAC:LEOPARD-x64(3.1.4.76)', 'X-Line-Application': 'DESKTOPMAC	3.1.4.76	MAC	LEOPARD-x64'})
@@ -59,14 +61,16 @@ try:
     pub_key = rsa.PublicKey(int(evalue, 16), int(nvalue, 16))
     cipher = rsa.encrypt(passkey, pub_key)
 
-    netaddr = socket.gethostbyname(socket.gethostname())
+    ip = socket.gethostbyname(socket.gethostname())
     # comname - your computer name
     comname = "comname"
     #session_key - something be taken after proper login - i think it is not used for initial login. it is retrieved after another authorization
     session_key = "0000000000000000000000000000000000000000000000000000000000000000"
 
-    msg = client.loginWithIdentityCredentialForCertificate(None, None, keyname, cipher.encode("hex"), True, netaddr, comname, 2, '')
+    msg = client.loginWithIdentityCredentialForCertificate(str1=None, str2=None, rsakey1=keyname, rsacipher=cipher.encode("hex"), b5=True, ip=ip, comname=comname, i8=2, str9='')
     print ("(loginWithIdentityCredentialForCertificate) = ", msg)
+
+
 
     transport.close()
 
