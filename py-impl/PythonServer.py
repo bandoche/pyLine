@@ -24,7 +24,7 @@ class LineHandler:
 
   def loginWithIdentityCredentialForCertificate(self, cr1, cr2, flag1, ip, comname, val1, cr5):
     print "loginWithIdentityCredentialForCertificate() - ", cr1, cr2, flag1, ip, comname, val1, cr5
-    result = loginWithIdentityCredentialForCertificateResult(None, 4, "Authentication fault exceeded")
+    result = loginWithIdentityCredentialForCertificateResult("00000000000000000000.0000000000000000000000.00000000000000000000000000000000000000000000", 1)
     return result
 
 
