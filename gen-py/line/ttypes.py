@@ -20,7 +20,7 @@ except:
 class loginWithIdentityCredentialForCertificateResult:
   """
   Attributes:
-   - line_access
+   - certificate
    - key64
    - verifier
    - auth_digit
@@ -29,15 +29,15 @@ class loginWithIdentityCredentialForCertificateResult:
 
   thrift_spec = (
     None, # 0
-    (1, TType.STRING, 'line_access', None, None, ), # 1
+    (1, TType.STRING, 'certificate', None, None, ), # 1
     (2, TType.STRING, 'key64', None, None, ), # 2
     (3, TType.STRING, 'verifier', None, None, ), # 3
     (4, TType.STRING, 'auth_digit', None, None, ), # 4
     (5, TType.I32, 'code', None, None, ), # 5
   )
 
-  def __init__(self, line_access=None, key64=None, verifier=None, auth_digit=None, code=None,):
-    self.line_access = line_access
+  def __init__(self, certificate=None, key64=None, verifier=None, auth_digit=None, code=None,):
+    self.certificate = certificate
     self.key64 = key64
     self.verifier = verifier
     self.auth_digit = auth_digit
@@ -54,7 +54,7 @@ class loginWithIdentityCredentialForCertificateResult:
         break
       if fid == 1:
         if ftype == TType.STRING:
-          self.line_access = iprot.readString();
+          self.certificate = iprot.readString();
         else:
           iprot.skip(ftype)
       elif fid == 2:
@@ -87,9 +87,9 @@ class loginWithIdentityCredentialForCertificateResult:
       oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
       return
     oprot.writeStructBegin('loginWithIdentityCredentialForCertificateResult')
-    if self.line_access is not None:
-      oprot.writeFieldBegin('line_access', TType.STRING, 1)
-      oprot.writeString(self.line_access)
+    if self.certificate is not None:
+      oprot.writeFieldBegin('certificate', TType.STRING, 1)
+      oprot.writeString(self.certificate)
       oprot.writeFieldEnd()
     if self.key64 is not None:
       oprot.writeFieldBegin('key64', TType.STRING, 2)
@@ -106,6 +106,208 @@ class loginWithIdentityCredentialForCertificateResult:
     if self.code is not None:
       oprot.writeFieldBegin('code', TType.I32, 5)
       oprot.writeI32(self.code)
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    return
+
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
+class getProfileResult:
+  """
+  Attributes:
+   - key33
+   - line_id
+   - basekey24
+   - region
+   - name
+   - today_message
+   - timecode
+   - blank2
+   - flag1
+   - flag2
+   - profile_url
+  """
+
+  thrift_spec = (
+    None, # 0
+    (1, TType.STRING, 'key33', None, None, ), # 1
+    None, # 2
+    (3, TType.STRING, 'line_id', None, None, ), # 3
+    None, # 4
+    None, # 5
+    None, # 6
+    None, # 7
+    None, # 8
+    None, # 9
+    (10, TType.STRING, 'basekey24', None, None, ), # 10
+    None, # 11
+    (12, TType.STRING, 'region', None, None, ), # 12
+    None, # 13
+    None, # 14
+    None, # 15
+    None, # 16
+    None, # 17
+    None, # 18
+    None, # 19
+    (20, TType.STRING, 'name', None, None, ), # 20
+    (21, TType.STRING, 'today_message', None, None, ), # 21
+    (22, TType.STRING, 'timecode', None, None, ), # 22
+    None, # 23
+    (24, TType.STRING, 'blank2', None, None, ), # 24
+    None, # 25
+    None, # 26
+    None, # 27
+    None, # 28
+    None, # 29
+    None, # 30
+    (31, TType.BOOL, 'flag1', None, None, ), # 31
+    (32, TType.BOOL, 'flag2', None, None, ), # 32
+    (33, TType.STRING, 'profile_url', None, None, ), # 33
+  )
+
+  def __init__(self, key33=None, line_id=None, basekey24=None, region=None, name=None, today_message=None, timecode=None, blank2=None, flag1=None, flag2=None, profile_url=None,):
+    self.key33 = key33
+    self.line_id = line_id
+    self.basekey24 = basekey24
+    self.region = region
+    self.name = name
+    self.today_message = today_message
+    self.timecode = timecode
+    self.blank2 = blank2
+    self.flag1 = flag1
+    self.flag2 = flag2
+    self.profile_url = profile_url
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 1:
+        if ftype == TType.STRING:
+          self.key33 = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 3:
+        if ftype == TType.STRING:
+          self.line_id = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 10:
+        if ftype == TType.STRING:
+          self.basekey24 = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 12:
+        if ftype == TType.STRING:
+          self.region = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 20:
+        if ftype == TType.STRING:
+          self.name = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 21:
+        if ftype == TType.STRING:
+          self.today_message = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 22:
+        if ftype == TType.STRING:
+          self.timecode = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 24:
+        if ftype == TType.STRING:
+          self.blank2 = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 31:
+        if ftype == TType.BOOL:
+          self.flag1 = iprot.readBool();
+        else:
+          iprot.skip(ftype)
+      elif fid == 32:
+        if ftype == TType.BOOL:
+          self.flag2 = iprot.readBool();
+        else:
+          iprot.skip(ftype)
+      elif fid == 33:
+        if ftype == TType.STRING:
+          self.profile_url = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('getProfileResult')
+    if self.key33 is not None:
+      oprot.writeFieldBegin('key33', TType.STRING, 1)
+      oprot.writeString(self.key33)
+      oprot.writeFieldEnd()
+    if self.line_id is not None:
+      oprot.writeFieldBegin('line_id', TType.STRING, 3)
+      oprot.writeString(self.line_id)
+      oprot.writeFieldEnd()
+    if self.basekey24 is not None:
+      oprot.writeFieldBegin('basekey24', TType.STRING, 10)
+      oprot.writeString(self.basekey24)
+      oprot.writeFieldEnd()
+    if self.region is not None:
+      oprot.writeFieldBegin('region', TType.STRING, 12)
+      oprot.writeString(self.region)
+      oprot.writeFieldEnd()
+    if self.name is not None:
+      oprot.writeFieldBegin('name', TType.STRING, 20)
+      oprot.writeString(self.name)
+      oprot.writeFieldEnd()
+    if self.today_message is not None:
+      oprot.writeFieldBegin('today_message', TType.STRING, 21)
+      oprot.writeString(self.today_message)
+      oprot.writeFieldEnd()
+    if self.timecode is not None:
+      oprot.writeFieldBegin('timecode', TType.STRING, 22)
+      oprot.writeString(self.timecode)
+      oprot.writeFieldEnd()
+    if self.blank2 is not None:
+      oprot.writeFieldBegin('blank2', TType.STRING, 24)
+      oprot.writeString(self.blank2)
+      oprot.writeFieldEnd()
+    if self.flag1 is not None:
+      oprot.writeFieldBegin('flag1', TType.BOOL, 31)
+      oprot.writeBool(self.flag1)
+      oprot.writeFieldEnd()
+    if self.flag2 is not None:
+      oprot.writeFieldBegin('flag2', TType.BOOL, 32)
+      oprot.writeBool(self.flag2)
+      oprot.writeFieldEnd()
+    if self.profile_url is not None:
+      oprot.writeFieldBegin('profile_url', TType.STRING, 33)
+      oprot.writeString(self.profile_url)
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
     oprot.writeStructEnd()

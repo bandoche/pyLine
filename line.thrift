@@ -35,7 +35,7 @@ struct loginWithIdentityCredentialForCertificateResult {
   3: string verifier, # aka. verifier. temp, rHMIGCCCCCCCCCCCCCCCCCCCCCCCCCCC
   4: string auth_digit, # 5210
   5: i32 code # 3(6): need auth? 1(2): correct login
-};
+}
 
 
 
