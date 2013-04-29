@@ -130,12 +130,21 @@ try:
             # wait until q request
             headers = {'X-Line-Access': msg.verifier, 
                 'User-Agent': user_agent, 
-                'X-Line-Application': header_line_application}
+                'X-Line-Application': header_line_application,
+                }
             resp, content = hc.request('https://gd2.line.naver.jp/Q', "GET", headers=headers)
             get_json = json.loads(content)
             verifier = get_json['result']['verifier']
             print verifier
-            c.execute('''INSERT INTO cert (userid, data) VALUES (?, ?)''', (email, verifier))
+
+            # get certificate from verifier
+
+            msg = client.loginWithVerifierForCertificate(verifier=verifier)
+            print msg
+            cert = msg.certificate
+
+            # add certificate
+            c.execute('''INSERT INTO cert (userid, data) VALUES (?, ?)''', (email, msg.certificate))
             sqconn.commit()
             print "saved in db"
         else:
@@ -146,6 +155,20 @@ try:
             # query certificate with verifier "loginWithVerifierForCertificate"
 
     #now we have certificate at here
+
+    #setting header
+    headers = {'X-Line-Access': cert, 
+        'User-Agent': user_agent, 
+        'X-Line-Application': header_line_application,
+        }
+    transport.close()
+    transport = THttpClient.THttpClient('http://localhost:8080/api/v4/TalkService.do')
+    transport.setCustomHeaders(headers)
+    transport = TTransport.TBufferedTransport(transport)
+    protocol = TCompactProtocol.TCompactProtocol(transport)
+    client = Line.Client(protocol)
+    transport.open()
+
 
     #get profile
     profile = client.getProfile()
