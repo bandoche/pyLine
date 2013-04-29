@@ -19,15 +19,54 @@
 #@ 42 # 5 - I32 (1) =  6
 #@ 44 # 0 - STOP
 
+#@ 0 # 1 - STRUCT
+#@ 1 # 2 - I32 (1) =  36
+#@ 3 # 3 - STRING ( 38 ) =  Account ID and password does not match
+#@ 43 # 0 - STOP
+#method name :  loginWithIdentityCredentialForCertificate
+#@ 0 # 1 - STRUCT
+#@ 1 # 2 - I32 (1) =  40
+#@ 3 # 3 - STRING ( 14 ) =  Internal error
+#@ 19 # 0 - STOP
+
 struct loginWithIdentityCredentialForCertificateResult {
-  1: string line_access, # real X-Line-Access key for communitation. DsKeAAAAAAAAAAAAAAAA.AAAAAAAAAAAAAAAAAAAAAA.AAAAAAAAAAA+a/AA+AAAAAAAAAAAAAAAAAAAAAAAAAA=
-  2: string key64, #unknown. only offered when login with initial state. (need verifier)
+  1: string certificate, # real X-Line-Access key for communitation. DsKeAAAAAAAAAAAAAAAA.AAAAAAAAAAAAAAAAAAAAAA.AAAAAAAAAAA+a/AA+AAAAAAAAAAAAAAAAAAAAAAAAAA=
+  2: string key64, #unknown. only offered when login with verifier for querying certificate at first stage. (need verifier)
   3: string verifier, # aka. verifier. temp, rHMIGCCCCCCCCCCCCCCCCCCCCCCCCCCC
   4: string auth_digit, # 5210
-  5: i32 code # 6: need auth? 2: correct login
+  5: i32 code # 3(6): need auth? 1(2): correct login
+};
+
+
+
+#@ 0 # 0 - STRUCT            
+#@ 2 # 1 - STRING ( 33 ) =  uac06
+#@ 37 # 3 - STRING ( 8 ) =  b
+#@ 47 # 10 - STRING ( 24 ) =  rh==
+#@ 73 # 12 - STRING ( 2 ) =  KR
+#@ 77 # 20 - STRING ( 9 ) =  
+#@ 88 # 21 - STRING (0)
+#@ 90 # 22 - STRING ( 13 ) =  134
+#@ 105 # 24 - STRING (0)
+#@ 107 # 31 - BOOL bool - false
+#@ 108 # 32 - BOOL bool - false
+#@ 109 # 33 - STRING ( 39 ) =  /os/p/uac06
+#@ 150 # 0 - STOP
+
+
+struct getProfileResult {
+  1: string key33, # 33 byte key ( uac06..... )
+  3: string line_id, # line account
+  10: string basekey24, # 24 byte base64ed key
+  12: string region, # 2 byte code for country. KR for korea
+  20: string name, # name in line profile
+  21: string today_message, #not sure. today message seems to
+  22: string timecode, #unknown. seemds timestamp but not
+  24: string blank2, #unknown2
+  31: bool flag1, #??
+  32: bool flag2, #??
+  33: string profile_url #39 byte (maybe dynamic) url for profile image - gd2.line.naver.jp/[[profile_url]]
 }
-
-
 
 
 
@@ -58,7 +97,7 @@ service Line {
 #@ 216 # 5 - BOOL bool - false
 #@ 217 # 6 - STRING ( 11 ) =  172.20.10.3
 #@ 230 # 7 - STRING ( 8 ) =  comnames
-#@ 240 # 8 - I32 (1) =  4
+#@ 240 # 8 - I32 (1) =  4 //
 #@ 242 # 9 - STRING (0)
 
   loginWithIdentityCredentialForCertificateResult loginWithIdentityCredentialForCertificate
@@ -68,7 +107,7 @@ service Line {
     4:string rsacipher, 
     5:bool b5, 
     6:string ip, 
-    7:string comname, 
+    7:string comname, # not sure, is it type of login method? (2 or normal, others for qr or else?? )
     8:i32 i8, 
     9:string str9) 
 #  loginWithIdentityCredentialForCertificateResult loginWithIdentityCredentialForCertificate(1:string cr1, 2:string cr2, 3:bool flag1, 4:string ip, 5:string comname, 6: i32 val1 7:string cr5)
@@ -81,6 +120,6 @@ service Line {
 #@ 0 # 3 - STRING ( 32 ) =  rHMIGCCCCCCCCCCCCCCCCCCCCCCCCCCC
 #@ 34 # 0 - STOP
   loginWithIdentityCredentialForCertificateResult loginWithVerifierForCertificate(3: string verifier)
-
+  getProfileResult getProfile()
 }
 
