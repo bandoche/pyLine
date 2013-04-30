@@ -26,6 +26,9 @@ if len(sys.argv) <= 1 or sys.argv[1] == '--help':
   print '  loginWithIdentityCredentialForCertificateResult loginWithIdentityCredentialForCertificate(string str1, string str2, string rsakey1, string rsacipher, bool b5, string ip, string comname, i32 i8, string str9)'
   print '  loginWithIdentityCredentialForCertificateResult loginWithVerifierForCertificate(string verifier)'
   print '  getProfileResult getProfile()'
+  print '  getServerTimeResult getServerTime()'
+  print '  getLastOpRevisionResult getLastOpRevision()'
+  print '   getAllContactIds()'
   print ''
   sys.exit(0)
 
@@ -94,6 +97,24 @@ elif cmd == 'getProfile':
     print 'getProfile requires 0 args'
     sys.exit(1)
   pp.pprint(client.getProfile())
+
+elif cmd == 'getServerTime':
+  if len(args) != 0:
+    print 'getServerTime requires 0 args'
+    sys.exit(1)
+  pp.pprint(client.getServerTime())
+
+elif cmd == 'getLastOpRevision':
+  if len(args) != 0:
+    print 'getLastOpRevision requires 0 args'
+    sys.exit(1)
+  pp.pprint(client.getLastOpRevision())
+
+elif cmd == 'getAllContactIds':
+  if len(args) != 0:
+    print 'getAllContactIds requires 0 args'
+    sys.exit(1)
+  pp.pprint(client.getAllContactIds())
 
 else:
   print 'Unrecognized method %s' % cmd
