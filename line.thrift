@@ -41,6 +41,7 @@ struct loginWithIdentityCredentialForCertificateResult {
 
 struct getProfileResult {
   1: string key33, # 33 byte key ( uac06..... )
+  2: i32 errcode,
   3: string line_id, # line account
   10: string basekey24, # 24 byte base64ed key
   12: string region, # 2 byte code for country. KR for korea
