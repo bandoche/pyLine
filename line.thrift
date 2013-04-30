@@ -39,21 +39,6 @@ struct loginWithIdentityCredentialForCertificateResult {
 
 
 
-#@ 0 # 0 - STRUCT            
-#@ 2 # 1 - STRING ( 33 ) =  uac06
-#@ 37 # 3 - STRING ( 8 ) =  b
-#@ 47 # 10 - STRING ( 24 ) =  rh==
-#@ 73 # 12 - STRING ( 2 ) =  KR
-#@ 77 # 20 - STRING ( 9 ) =  
-#@ 88 # 21 - STRING (0)
-#@ 90 # 22 - STRING ( 13 ) =  134
-#@ 105 # 24 - STRING (0)
-#@ 107 # 31 - BOOL bool - false
-#@ 108 # 32 - BOOL bool - false
-#@ 109 # 33 - STRING ( 39 ) =  /os/p/uac06
-#@ 150 # 0 - STOP
-
-
 struct getProfileResult {
   1: string key33, # 33 byte key ( uac06..... )
   3: string line_id, # line account
