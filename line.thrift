@@ -109,8 +109,8 @@ service Line {
 #@ 34 # 0 - STOP
   loginWithIdentityCredentialForCertificateResult loginWithVerifierForCertificate(3: string verifier)
   getProfileResult getProfile()
-  getServerTimeResult getServerTime()
-  getLastOpRevisionResult getLastOpRevision()
+  i64 getServerTime()
+  i64 getLastOpRevision()
   list<string> getAllContactIds()
 }
 
