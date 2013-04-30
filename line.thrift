@@ -54,11 +54,13 @@ struct getProfileResult {
 }
 
 
+struct getServerTimeResult {
+  1: i64 server_time
+}
 
-
-
-
-
+struct getLastOpRevisionResult {
+  1: i64 last_op_rev
+}
 
 
 
@@ -106,5 +108,8 @@ service Line {
 #@ 34 # 0 - STOP
   loginWithIdentityCredentialForCertificateResult loginWithVerifierForCertificate(3: string verifier)
   getProfileResult getProfile()
+  getServerTimeResult getServerTime()
+  getLastOpRevisionResult getLastOpRevision()
+  list<string> getAllContactIds()
 }
 
