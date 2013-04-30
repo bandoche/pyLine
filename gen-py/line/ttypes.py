@@ -129,6 +129,7 @@ class getProfileResult:
   """
   Attributes:
    - key33
+   - errcode
    - line_id
    - basekey24
    - region
@@ -144,7 +145,7 @@ class getProfileResult:
   thrift_spec = (
     None, # 0
     (1, TType.STRING, 'key33', None, None, ), # 1
-    None, # 2
+    (2, TType.I32, 'errcode', None, None, ), # 2
     (3, TType.STRING, 'line_id', None, None, ), # 3
     None, # 4
     None, # 5
@@ -178,8 +179,9 @@ class getProfileResult:
     (33, TType.STRING, 'profile_url', None, None, ), # 33
   )
 
-  def __init__(self, key33=None, line_id=None, basekey24=None, region=None, name=None, today_message=None, timecode=None, blank2=None, flag1=None, flag2=None, profile_url=None,):
+  def __init__(self, key33=None, errcode=None, line_id=None, basekey24=None, region=None, name=None, today_message=None, timecode=None, blank2=None, flag1=None, flag2=None, profile_url=None,):
     self.key33 = key33
+    self.errcode = errcode
     self.line_id = line_id
     self.basekey24 = basekey24
     self.region = region
@@ -203,6 +205,11 @@ class getProfileResult:
       if fid == 1:
         if ftype == TType.STRING:
           self.key33 = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 2:
+        if ftype == TType.I32:
+          self.errcode = iprot.readI32();
         else:
           iprot.skip(ftype)
       elif fid == 3:
@@ -268,6 +275,10 @@ class getProfileResult:
     if self.key33 is not None:
       oprot.writeFieldBegin('key33', TType.STRING, 1)
       oprot.writeString(self.key33)
+      oprot.writeFieldEnd()
+    if self.errcode is not None:
+      oprot.writeFieldBegin('errcode', TType.I32, 2)
+      oprot.writeI32(self.errcode)
       oprot.writeFieldEnd()
     if self.line_id is not None:
       oprot.writeFieldBegin('line_id', TType.STRING, 3)
