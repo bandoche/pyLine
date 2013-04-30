@@ -26,8 +26,8 @@ if len(sys.argv) <= 1 or sys.argv[1] == '--help':
   print '  loginWithIdentityCredentialForCertificateResult loginWithIdentityCredentialForCertificate(string str1, string str2, string rsakey1, string rsacipher, bool b5, string ip, string comname, i32 i8, string str9)'
   print '  loginWithIdentityCredentialForCertificateResult loginWithVerifierForCertificate(string verifier)'
   print '  getProfileResult getProfile()'
-  print '  getServerTimeResult getServerTime()'
-  print '  getLastOpRevisionResult getLastOpRevision()'
+  print '  i64 getServerTime()'
+  print '  i64 getLastOpRevision()'
   print '   getAllContactIds()'
   print ''
   sys.exit(0)

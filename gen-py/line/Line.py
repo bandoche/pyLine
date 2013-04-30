@@ -821,7 +821,7 @@ class getServerTime_result:
   """
 
   thrift_spec = (
-    (0, TType.STRUCT, 'success', (getServerTimeResult, getServerTimeResult.thrift_spec), None, ), # 0
+    (0, TType.I64, 'success', None, None, ), # 0
   )
 
   def __init__(self, success=None,):
@@ -837,9 +837,8 @@ class getServerTime_result:
       if ftype == TType.STOP:
         break
       if fid == 0:
-        if ftype == TType.STRUCT:
-          self.success = getServerTimeResult()
-          self.success.read(iprot)
+        if ftype == TType.I64:
+          self.success = iprot.readI64();
         else:
           iprot.skip(ftype)
       else:
@@ -853,8 +852,8 @@ class getServerTime_result:
       return
     oprot.writeStructBegin('getServerTime_result')
     if self.success is not None:
-      oprot.writeFieldBegin('success', TType.STRUCT, 0)
-      self.success.write(oprot)
+      oprot.writeFieldBegin('success', TType.I64, 0)
+      oprot.writeI64(self.success)
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
     oprot.writeStructEnd()
@@ -923,7 +922,7 @@ class getLastOpRevision_result:
   """
 
   thrift_spec = (
-    (0, TType.STRUCT, 'success', (getLastOpRevisionResult, getLastOpRevisionResult.thrift_spec), None, ), # 0
+    (0, TType.I64, 'success', None, None, ), # 0
   )
 
   def __init__(self, success=None,):
@@ -939,9 +938,8 @@ class getLastOpRevision_result:
       if ftype == TType.STOP:
         break
       if fid == 0:
-        if ftype == TType.STRUCT:
-          self.success = getLastOpRevisionResult()
-          self.success.read(iprot)
+        if ftype == TType.I64:
+          self.success = iprot.readI64();
         else:
           iprot.skip(ftype)
       else:
@@ -955,8 +953,8 @@ class getLastOpRevision_result:
       return
     oprot.writeStructBegin('getLastOpRevision_result')
     if self.success is not None:
-      oprot.writeFieldBegin('success', TType.STRUCT, 0)
-      self.success.write(oprot)
+      oprot.writeFieldBegin('success', TType.I64, 0)
+      oprot.writeI64(self.success)
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
     oprot.writeStructEnd()
