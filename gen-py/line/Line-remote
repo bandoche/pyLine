@@ -33,7 +33,7 @@ if len(sys.argv) <= 1 or sys.argv[1] == '--help':
   print '  getMessageBoxCompactWrapUpListResult getMessageBoxCompactWrapUpList(i32 param1, i32 param2)'
   print '  sendMessageResult sendMessage(i32 var1, send_msg_str msgs)'
   print '  getNextMessagesResult getNextMessages(string room_key33, i64 timecode)'
-  print '  fetchOperationsResult fetchOperations(i64 param1, i32 param2)'
+  print '   fetchOperations(i64 last_op_code, i32 polling_timeout)'
   print '  void sendChatChecked(i32 param1, string room_key33, string timecode)'
   print '  getRoomResult getRoom(string room_key33)'
   print '   getRecentMessages(string room_key33, i32 param1)'

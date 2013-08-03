@@ -134,7 +134,7 @@ class getProfileResult:
    - region
    - name
    - today_message
-   - timecode
+   - msg_seq
    - blank2
    - flag1
    - flag2
@@ -164,7 +164,7 @@ class getProfileResult:
     None, # 19
     (20, TType.STRING, 'name', None, None, ), # 20
     (21, TType.STRING, 'today_message', None, None, ), # 21
-    (22, TType.STRING, 'timecode', None, None, ), # 22
+    (22, TType.STRING, 'msg_seq', None, None, ), # 22
     None, # 23
     (24, TType.STRING, 'blank2', None, None, ), # 24
     None, # 25
@@ -178,14 +178,14 @@ class getProfileResult:
     (33, TType.STRING, 'profile_url', None, None, ), # 33
   )
 
-  def __init__(self, key33=None, line_id=None, basekey24=None, region=None, name=None, today_message=None, timecode=None, blank2=None, flag1=None, flag2=None, profile_url=None,):
+  def __init__(self, key33=None, line_id=None, basekey24=None, region=None, name=None, today_message=None, msg_seq=None, blank2=None, flag1=None, flag2=None, profile_url=None,):
     self.key33 = key33
     self.line_id = line_id
     self.basekey24 = basekey24
     self.region = region
     self.name = name
     self.today_message = today_message
-    self.timecode = timecode
+    self.msg_seq = msg_seq
     self.blank2 = blank2
     self.flag1 = flag1
     self.flag2 = flag2
@@ -232,7 +232,7 @@ class getProfileResult:
           iprot.skip(ftype)
       elif fid == 22:
         if ftype == TType.STRING:
-          self.timecode = iprot.readString();
+          self.msg_seq = iprot.readString();
         else:
           iprot.skip(ftype)
       elif fid == 24:
@@ -289,9 +289,9 @@ class getProfileResult:
       oprot.writeFieldBegin('today_message', TType.STRING, 21)
       oprot.writeString(self.today_message)
       oprot.writeFieldEnd()
-    if self.timecode is not None:
-      oprot.writeFieldBegin('timecode', TType.STRING, 22)
-      oprot.writeString(self.timecode)
+    if self.msg_seq is not None:
+      oprot.writeFieldBegin('msg_seq', TType.STRING, 22)
+      oprot.writeString(self.msg_seq)
       oprot.writeFieldEnd()
     if self.blank2 is not None:
       oprot.writeFieldBegin('blank2', TType.STRING, 24)
@@ -1536,8 +1536,8 @@ class getNextMessagesResult:
    - user_key33s
    - room_key33
    - var1
-   - timecode
-   - timecode2
+   - msg_seq
+   - timestamp
    - code
    - msg
    - flag1
@@ -1550,8 +1550,8 @@ class getNextMessagesResult:
     (1, TType.LIST, 'user_key33s', (TType.STRING,None), None, ), # 1
     (2, TType.STRING, 'room_key33', None, None, ), # 2
     (3, TType.I32, 'var1', None, None, ), # 3
-    (4, TType.STRING, 'timecode', None, None, ), # 4
-    (5, TType.I64, 'timecode2', None, None, ), # 5
+    (4, TType.STRING, 'msg_seq', None, None, ), # 4
+    (5, TType.I64, 'timestamp', None, None, ), # 5
     (6, TType.I64, 'code', None, None, ), # 6
     None, # 7
     None, # 8
@@ -1567,12 +1567,12 @@ class getNextMessagesResult:
     (18, TType.MAP, 'seq', (TType.STRING,None,TType.STRING,None), None, ), # 18
   )
 
-  def __init__(self, user_key33s=None, room_key33=None, var1=None, timecode=None, timecode2=None, code=None, msg=None, flag1=None, var2=None, seq=None,):
+  def __init__(self, user_key33s=None, room_key33=None, var1=None, msg_seq=None, timestamp=None, code=None, msg=None, flag1=None, var2=None, seq=None,):
     self.user_key33s = user_key33s
     self.room_key33 = room_key33
     self.var1 = var1
-    self.timecode = timecode
-    self.timecode2 = timecode2
+    self.msg_seq = msg_seq
+    self.timestamp = timestamp
     self.code = code
     self.msg = msg
     self.flag1 = flag1
@@ -1610,12 +1610,12 @@ class getNextMessagesResult:
           iprot.skip(ftype)
       elif fid == 4:
         if ftype == TType.STRING:
-          self.timecode = iprot.readString();
+          self.msg_seq = iprot.readString();
         else:
           iprot.skip(ftype)
       elif fid == 5:
         if ftype == TType.I64:
-          self.timecode2 = iprot.readI64();
+          self.timestamp = iprot.readI64();
         else:
           iprot.skip(ftype)
       elif fid == 6:
@@ -1674,13 +1674,13 @@ class getNextMessagesResult:
       oprot.writeFieldBegin('var1', TType.I32, 3)
       oprot.writeI32(self.var1)
       oprot.writeFieldEnd()
-    if self.timecode is not None:
-      oprot.writeFieldBegin('timecode', TType.STRING, 4)
-      oprot.writeString(self.timecode)
+    if self.msg_seq is not None:
+      oprot.writeFieldBegin('msg_seq', TType.STRING, 4)
+      oprot.writeString(self.msg_seq)
       oprot.writeFieldEnd()
-    if self.timecode2 is not None:
-      oprot.writeFieldBegin('timecode2', TType.I64, 5)
-      oprot.writeI64(self.timecode2)
+    if self.timestamp is not None:
+      oprot.writeFieldBegin('timestamp', TType.I64, 5)
+      oprot.writeI64(self.timestamp)
       oprot.writeFieldEnd()
     if self.code is not None:
       oprot.writeFieldBegin('code', TType.I64, 6)
@@ -1705,260 +1705,6 @@ class getNextMessagesResult:
         oprot.writeString(kiter58)
         oprot.writeString(viter59)
       oprot.writeMapEnd()
-      oprot.writeFieldEnd()
-    oprot.writeFieldStop()
-    oprot.writeStructEnd()
-
-  def validate(self):
-    return
-
-
-  def __repr__(self):
-    L = ['%s=%r' % (key, value)
-      for key, value in self.__dict__.iteritems()]
-    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
-
-  def __eq__(self, other):
-    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
-
-  def __ne__(self, other):
-    return not (self == other)
-
-class fetch_struct:
-  """
-  Attributes:
-   - var1
-   - var2
-   - var3
-   - var4
-   - user_key33
-   - timecode
-   - var5
-   - var6
-   - var7
-   - var8
-  """
-
-  thrift_spec = (
-    None, # 0
-    (1, TType.I64, 'var1', None, None, ), # 1
-    (2, TType.I64, 'var2', None, None, ), # 2
-    (3, TType.I32, 'var3', None, None, ), # 3
-    (4, TType.I32, 'var4', None, None, ), # 4
-    None, # 5
-    None, # 6
-    None, # 7
-    None, # 8
-    None, # 9
-    (10, TType.STRING, 'user_key33', None, None, ), # 10
-    (11, TType.STRING, 'timecode', None, None, ), # 11
-    (12, TType.I64, 'var5', None, None, ), # 12
-    (13, TType.I64, 'var6', None, None, ), # 13
-    (14, TType.I32, 'var7', None, None, ), # 14
-    (15, TType.I32, 'var8', None, None, ), # 15
-  )
-
-  def __init__(self, var1=None, var2=None, var3=None, var4=None, user_key33=None, timecode=None, var5=None, var6=None, var7=None, var8=None,):
-    self.var1 = var1
-    self.var2 = var2
-    self.var3 = var3
-    self.var4 = var4
-    self.user_key33 = user_key33
-    self.timecode = timecode
-    self.var5 = var5
-    self.var6 = var6
-    self.var7 = var7
-    self.var8 = var8
-
-  def read(self, iprot):
-    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
-      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
-      return
-    iprot.readStructBegin()
-    while True:
-      (fname, ftype, fid) = iprot.readFieldBegin()
-      if ftype == TType.STOP:
-        break
-      if fid == 1:
-        if ftype == TType.I64:
-          self.var1 = iprot.readI64();
-        else:
-          iprot.skip(ftype)
-      elif fid == 2:
-        if ftype == TType.I64:
-          self.var2 = iprot.readI64();
-        else:
-          iprot.skip(ftype)
-      elif fid == 3:
-        if ftype == TType.I32:
-          self.var3 = iprot.readI32();
-        else:
-          iprot.skip(ftype)
-      elif fid == 4:
-        if ftype == TType.I32:
-          self.var4 = iprot.readI32();
-        else:
-          iprot.skip(ftype)
-      elif fid == 10:
-        if ftype == TType.STRING:
-          self.user_key33 = iprot.readString();
-        else:
-          iprot.skip(ftype)
-      elif fid == 11:
-        if ftype == TType.STRING:
-          self.timecode = iprot.readString();
-        else:
-          iprot.skip(ftype)
-      elif fid == 12:
-        if ftype == TType.I64:
-          self.var5 = iprot.readI64();
-        else:
-          iprot.skip(ftype)
-      elif fid == 13:
-        if ftype == TType.I64:
-          self.var6 = iprot.readI64();
-        else:
-          iprot.skip(ftype)
-      elif fid == 14:
-        if ftype == TType.I32:
-          self.var7 = iprot.readI32();
-        else:
-          iprot.skip(ftype)
-      elif fid == 15:
-        if ftype == TType.I32:
-          self.var8 = iprot.readI32();
-        else:
-          iprot.skip(ftype)
-      else:
-        iprot.skip(ftype)
-      iprot.readFieldEnd()
-    iprot.readStructEnd()
-
-  def write(self, oprot):
-    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
-      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
-      return
-    oprot.writeStructBegin('fetch_struct')
-    if self.var1 is not None:
-      oprot.writeFieldBegin('var1', TType.I64, 1)
-      oprot.writeI64(self.var1)
-      oprot.writeFieldEnd()
-    if self.var2 is not None:
-      oprot.writeFieldBegin('var2', TType.I64, 2)
-      oprot.writeI64(self.var2)
-      oprot.writeFieldEnd()
-    if self.var3 is not None:
-      oprot.writeFieldBegin('var3', TType.I32, 3)
-      oprot.writeI32(self.var3)
-      oprot.writeFieldEnd()
-    if self.var4 is not None:
-      oprot.writeFieldBegin('var4', TType.I32, 4)
-      oprot.writeI32(self.var4)
-      oprot.writeFieldEnd()
-    if self.user_key33 is not None:
-      oprot.writeFieldBegin('user_key33', TType.STRING, 10)
-      oprot.writeString(self.user_key33)
-      oprot.writeFieldEnd()
-    if self.timecode is not None:
-      oprot.writeFieldBegin('timecode', TType.STRING, 11)
-      oprot.writeString(self.timecode)
-      oprot.writeFieldEnd()
-    if self.var5 is not None:
-      oprot.writeFieldBegin('var5', TType.I64, 12)
-      oprot.writeI64(self.var5)
-      oprot.writeFieldEnd()
-    if self.var6 is not None:
-      oprot.writeFieldBegin('var6', TType.I64, 13)
-      oprot.writeI64(self.var6)
-      oprot.writeFieldEnd()
-    if self.var7 is not None:
-      oprot.writeFieldBegin('var7', TType.I32, 14)
-      oprot.writeI32(self.var7)
-      oprot.writeFieldEnd()
-    if self.var8 is not None:
-      oprot.writeFieldBegin('var8', TType.I32, 15)
-      oprot.writeI32(self.var8)
-      oprot.writeFieldEnd()
-    oprot.writeFieldStop()
-    oprot.writeStructEnd()
-
-  def validate(self):
-    return
-
-
-  def __repr__(self):
-    L = ['%s=%r' % (key, value)
-      for key, value in self.__dict__.iteritems()]
-    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
-
-  def __eq__(self, other):
-    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
-
-  def __ne__(self, other):
-    return not (self == other)
-
-class fetchOperationsResult:
-  """
-  Attributes:
-   - item1
-   - item2
-  """
-
-  thrift_spec = (
-    None, # 0
-    (1, TType.LIST, 'item1', (TType.STRING,None), None, ), # 1
-    (2, TType.STRUCT, 'item2', (fetch_struct, fetch_struct.thrift_spec), None, ), # 2
-  )
-
-  def __init__(self, item1=None, item2=None,):
-    self.item1 = item1
-    self.item2 = item2
-
-  def read(self, iprot):
-    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
-      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
-      return
-    iprot.readStructBegin()
-    while True:
-      (fname, ftype, fid) = iprot.readFieldBegin()
-      if ftype == TType.STOP:
-        break
-      if fid == 1:
-        if ftype == TType.LIST:
-          self.item1 = []
-          (_etype63, _size60) = iprot.readListBegin()
-          for _i64 in xrange(_size60):
-            _elem65 = iprot.readString();
-            self.item1.append(_elem65)
-          iprot.readListEnd()
-        else:
-          iprot.skip(ftype)
-      elif fid == 2:
-        if ftype == TType.STRUCT:
-          self.item2 = fetch_struct()
-          self.item2.read(iprot)
-        else:
-          iprot.skip(ftype)
-      else:
-        iprot.skip(ftype)
-      iprot.readFieldEnd()
-    iprot.readStructEnd()
-
-  def write(self, oprot):
-    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
-      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
-      return
-    oprot.writeStructBegin('fetchOperationsResult')
-    if self.item1 is not None:
-      oprot.writeFieldBegin('item1', TType.LIST, 1)
-      oprot.writeListBegin(TType.STRING, len(self.item1))
-      for iter66 in self.item1:
-        oprot.writeString(iter66)
-      oprot.writeListEnd()
-      oprot.writeFieldEnd()
-    if self.item2 is not None:
-      oprot.writeFieldBegin('item2', TType.STRUCT, 2)
-      self.item2.write(oprot)
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
     oprot.writeStructEnd()
@@ -2134,11 +1880,11 @@ class getRoomResult:
       elif fid == 10:
         if ftype == TType.LIST:
           self.room_member = []
-          (_etype70, _size67) = iprot.readListBegin()
-          for _i71 in xrange(_size67):
-            _elem72 = contact()
-            _elem72.read(iprot)
-            self.room_member.append(_elem72)
+          (_etype63, _size60) = iprot.readListBegin()
+          for _i64 in xrange(_size60):
+            _elem65 = contact()
+            _elem65.read(iprot)
+            self.room_member.append(_elem65)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
@@ -2163,8 +1909,8 @@ class getRoomResult:
     if self.room_member is not None:
       oprot.writeFieldBegin('room_member', TType.LIST, 10)
       oprot.writeListBegin(TType.STRUCT, len(self.room_member))
-      for iter73 in self.room_member:
-        iter73.write(oprot)
+      for iter66 in self.room_member:
+        iter66.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
@@ -2191,8 +1937,8 @@ class msg_str:
    - user_key33
    - room_key33
    - param1
-   - timecode
-   - param2
+   - msg_seq
+   - timestamp
    - param3
    - message
    - flag1
@@ -2206,8 +1952,8 @@ class msg_str:
     (1, TType.STRING, 'user_key33', None, None, ), # 1
     (2, TType.STRING, 'room_key33', None, None, ), # 2
     (3, TType.I32, 'param1', None, None, ), # 3
-    (4, TType.STRING, 'timecode', None, None, ), # 4
-    (5, TType.I64, 'param2', None, None, ), # 5
+    (4, TType.STRING, 'msg_seq', None, None, ), # 4
+    (5, TType.I64, 'timestamp', None, None, ), # 5
     (6, TType.I64, 'param3', None, None, ), # 6
     None, # 7
     None, # 8
@@ -2223,12 +1969,12 @@ class msg_str:
     (18, TType.MAP, 'seq', (TType.STRING,None,TType.STRING,None), None, ), # 18
   )
 
-  def __init__(self, user_key33=None, room_key33=None, param1=None, timecode=None, param2=None, param3=None, message=None, flag1=None, flag_file=None, file_content=None, seq=None,):
+  def __init__(self, user_key33=None, room_key33=None, param1=None, msg_seq=None, timestamp=None, param3=None, message=None, flag1=None, flag_file=None, file_content=None, seq=None,):
     self.user_key33 = user_key33
     self.room_key33 = room_key33
     self.param1 = param1
-    self.timecode = timecode
-    self.param2 = param2
+    self.msg_seq = msg_seq
+    self.timestamp = timestamp
     self.param3 = param3
     self.message = message
     self.flag1 = flag1
@@ -2262,12 +2008,12 @@ class msg_str:
           iprot.skip(ftype)
       elif fid == 4:
         if ftype == TType.STRING:
-          self.timecode = iprot.readString();
+          self.msg_seq = iprot.readString();
         else:
           iprot.skip(ftype)
       elif fid == 5:
         if ftype == TType.I64:
-          self.param2 = iprot.readI64();
+          self.timestamp = iprot.readI64();
         else:
           iprot.skip(ftype)
       elif fid == 6:
@@ -2298,11 +2044,11 @@ class msg_str:
       elif fid == 18:
         if ftype == TType.MAP:
           self.seq = {}
-          (_ktype75, _vtype76, _size74 ) = iprot.readMapBegin() 
-          for _i78 in xrange(_size74):
-            _key79 = iprot.readString();
-            _val80 = iprot.readString();
-            self.seq[_key79] = _val80
+          (_ktype68, _vtype69, _size67 ) = iprot.readMapBegin() 
+          for _i71 in xrange(_size67):
+            _key72 = iprot.readString();
+            _val73 = iprot.readString();
+            self.seq[_key72] = _val73
           iprot.readMapEnd()
         else:
           iprot.skip(ftype)
@@ -2328,13 +2074,13 @@ class msg_str:
       oprot.writeFieldBegin('param1', TType.I32, 3)
       oprot.writeI32(self.param1)
       oprot.writeFieldEnd()
-    if self.timecode is not None:
-      oprot.writeFieldBegin('timecode', TType.STRING, 4)
-      oprot.writeString(self.timecode)
+    if self.msg_seq is not None:
+      oprot.writeFieldBegin('msg_seq', TType.STRING, 4)
+      oprot.writeString(self.msg_seq)
       oprot.writeFieldEnd()
-    if self.param2 is not None:
-      oprot.writeFieldBegin('param2', TType.I64, 5)
-      oprot.writeI64(self.param2)
+    if self.timestamp is not None:
+      oprot.writeFieldBegin('timestamp', TType.I64, 5)
+      oprot.writeI64(self.timestamp)
       oprot.writeFieldEnd()
     if self.param3 is not None:
       oprot.writeFieldBegin('param3', TType.I64, 6)
@@ -2359,10 +2105,156 @@ class msg_str:
     if self.seq is not None:
       oprot.writeFieldBegin('seq', TType.MAP, 18)
       oprot.writeMapBegin(TType.STRING, TType.STRING, len(self.seq))
-      for kiter81,viter82 in self.seq.items():
-        oprot.writeString(kiter81)
-        oprot.writeString(viter82)
+      for kiter74,viter75 in self.seq.items():
+        oprot.writeString(kiter74)
+        oprot.writeString(viter75)
       oprot.writeMapEnd()
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    return
+
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
+class fetch_struct:
+  """
+  Attributes:
+   - op_code
+   - timestamp
+   - fetch_type
+   - var4
+   - user_key33
+   - msg_seq
+   - msg_item
+  """
+
+  thrift_spec = (
+    None, # 0
+    (1, TType.I64, 'op_code', None, None, ), # 1
+    (2, TType.I64, 'timestamp', None, None, ), # 2
+    (3, TType.I32, 'fetch_type', None, None, ), # 3
+    (4, TType.I32, 'var4', None, None, ), # 4
+    None, # 5
+    None, # 6
+    None, # 7
+    None, # 8
+    None, # 9
+    (10, TType.STRING, 'user_key33', None, None, ), # 10
+    (11, TType.STRING, 'msg_seq', None, None, ), # 11
+    None, # 12
+    None, # 13
+    None, # 14
+    None, # 15
+    None, # 16
+    None, # 17
+    None, # 18
+    None, # 19
+    (20, TType.STRUCT, 'msg_item', (msg_str, msg_str.thrift_spec), None, ), # 20
+  )
+
+  def __init__(self, op_code=None, timestamp=None, fetch_type=None, var4=None, user_key33=None, msg_seq=None, msg_item=None,):
+    self.op_code = op_code
+    self.timestamp = timestamp
+    self.fetch_type = fetch_type
+    self.var4 = var4
+    self.user_key33 = user_key33
+    self.msg_seq = msg_seq
+    self.msg_item = msg_item
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 1:
+        if ftype == TType.I64:
+          self.op_code = iprot.readI64();
+        else:
+          iprot.skip(ftype)
+      elif fid == 2:
+        if ftype == TType.I64:
+          self.timestamp = iprot.readI64();
+        else:
+          iprot.skip(ftype)
+      elif fid == 3:
+        if ftype == TType.I32:
+          self.fetch_type = iprot.readI32();
+        else:
+          iprot.skip(ftype)
+      elif fid == 4:
+        if ftype == TType.I32:
+          self.var4 = iprot.readI32();
+        else:
+          iprot.skip(ftype)
+      elif fid == 10:
+        if ftype == TType.STRING:
+          self.user_key33 = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 11:
+        if ftype == TType.STRING:
+          self.msg_seq = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 20:
+        if ftype == TType.STRUCT:
+          self.msg_item = msg_str()
+          self.msg_item.read(iprot)
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('fetch_struct')
+    if self.op_code is not None:
+      oprot.writeFieldBegin('op_code', TType.I64, 1)
+      oprot.writeI64(self.op_code)
+      oprot.writeFieldEnd()
+    if self.timestamp is not None:
+      oprot.writeFieldBegin('timestamp', TType.I64, 2)
+      oprot.writeI64(self.timestamp)
+      oprot.writeFieldEnd()
+    if self.fetch_type is not None:
+      oprot.writeFieldBegin('fetch_type', TType.I32, 3)
+      oprot.writeI32(self.fetch_type)
+      oprot.writeFieldEnd()
+    if self.var4 is not None:
+      oprot.writeFieldBegin('var4', TType.I32, 4)
+      oprot.writeI32(self.var4)
+      oprot.writeFieldEnd()
+    if self.user_key33 is not None:
+      oprot.writeFieldBegin('user_key33', TType.STRING, 10)
+      oprot.writeString(self.user_key33)
+      oprot.writeFieldEnd()
+    if self.msg_seq is not None:
+      oprot.writeFieldBegin('msg_seq', TType.STRING, 11)
+      oprot.writeString(self.msg_seq)
+      oprot.writeFieldEnd()
+    if self.msg_item is not None:
+      oprot.writeFieldBegin('msg_item', TType.STRUCT, 20)
+      self.msg_item.write(oprot)
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
     oprot.writeStructEnd()

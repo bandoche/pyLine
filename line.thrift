@@ -1,3 +1,9 @@
+# key33 = (string) {u,r} + 32byte key. u for user, r for room
+# msg_seq = (stringed integer) for unique message
+# timestamp = (integer) unix timestamp * 100 for msec
+# op_code = (integer) sequence that indicate user operation (perhaps calculated by summation of whole chat counts)
+# most message string utf-8 encoded
+
 #method name :  loginWithIdentityCredentialForCertificate
 #@ 0 # 0 - STRUCT
 #@ 2 # 1 - STRING ( 88 ) =  DsKeAAAAAAAAAAAAAAAA.AAAAAAAAAAAAAAAAAAAAAA.AAAAAAAAAAA+a/AA+AAAAAAAAAAAAAAAAAAAAAAAAAA=
@@ -46,7 +52,7 @@ struct getProfileResult {
   12: string region, # 2 byte code for country. KR for korea
   20: string name, # name in line profile
   21: string today_message, #not sure. today message seems to
-  22: string timecode, #unknown. seemds timestamp but not
+  22: string msg_seq, 
   24: string blank2, #unknown2
   31: bool flag1, #??
   32: bool flag2, #??
@@ -183,8 +189,8 @@ struct getNextMessagesResult {
   1: list<string> user_key33s,
   2: string room_key33,
   3: i32 var1,
-  4: string timecode,
-  5: i64 timecode2,
+  4: string msg_seq,
+  5: i64 timestamp,
   6: i64 code, #0x00
   10: string msg,
   14: bool flag1,
@@ -192,24 +198,7 @@ struct getNextMessagesResult {
   18: map<string, string> seq
 }
 
-struct fetch_struct {
-  1: i64 var1,
-  2: i64 var2,
-  3: i32 var3,
-  4: i32 var4,
-  10: string user_key33,
-  11: string timecode,
-  12: i64 var5,
-  13: i64 var6,
-  14: i32 var7,
-  15: i32 var8
-}
 
-struct fetchOperationsResult {
-  # two structures in one list
-  1: list<string> item1,  
-  2: fetch_struct item2
-}
 
 struct send_msg_str {
   1: string my_key33, 
@@ -238,6 +227,24 @@ struct msg_str {
   17: string file_content,
   18: map<string, string> seq
 }
+
+# fetch_type
+## 25 for sent msg (to server)
+## 26 for msg receive (next struct's i32=0 for text msg, 14 for sticker)
+## 28 for your msg is read (maybe)
+## 40 for other writing (maybe)
+
+
+struct fetch_struct {
+  1: i64 op_code,
+  2: i64 timestamp,
+  3: i32 fetch_type, 
+  4: i32 var4,
+  10: string user_key33,
+  11: string msg_seq,
+  20: msg_str msg_item,
+}
+
 
 service Line {
 	#string loginWithIdentityCredentialForCertificate(1:3:string cr1, 4:string cr2, 5:bool flag1, 6:string ip, 7:string comname, 8: i32 val1 9:string cr5)
@@ -290,7 +297,7 @@ service Line {
   sendMessageResult sendMessage(1: i32 var1, 2: send_msg_str msgs)
 #  sendMessageResult sendMessage(1: i32 var1, 2: string my_key33, 3: string room_key33, 11: string msg, 16: i32 code)
   getNextMessagesResult getNextMessages(2: string room_key33, 3: i64 timecode)
-  fetchOperationsResult fetchOperations(2:i64 param1, 3: i32 param2)
+  list<fetch_struct> fetchOperations(2:i64 last_op_code, 3: i32 polling_timeout)
   void sendChatChecked(1: i32 param1, 2: string room_key33, 3: string timecode)
   getRoomResult getRoom(2: string room_key33)
   list<msg_str> getRecentMessages(2:string room_key33, 3:i32 param1)

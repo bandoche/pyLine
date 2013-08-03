@@ -83,11 +83,11 @@ class Iface:
     """
     pass
 
-  def fetchOperations(self, param1, param2):
+  def fetchOperations(self, last_op_code, polling_timeout):
     """
     Parameters:
-     - param1
-     - param2
+     - last_op_code
+     - polling_timeout
     """
     pass
 
@@ -425,20 +425,20 @@ class Client(Iface):
       return result.success
     raise TApplicationException(TApplicationException.MISSING_RESULT, "getNextMessages failed: unknown result");
 
-  def fetchOperations(self, param1, param2):
+  def fetchOperations(self, last_op_code, polling_timeout):
     """
     Parameters:
-     - param1
-     - param2
+     - last_op_code
+     - polling_timeout
     """
-    self.send_fetchOperations(param1, param2)
+    self.send_fetchOperations(last_op_code, polling_timeout)
     return self.recv_fetchOperations()
 
-  def send_fetchOperations(self, param1, param2):
+  def send_fetchOperations(self, last_op_code, polling_timeout):
     self._oprot.writeMessageBegin('fetchOperations', TMessageType.CALL, self._seqid)
     args = fetchOperations_args()
-    args.param1 = param1
-    args.param2 = param2
+    args.last_op_code = last_op_code
+    args.polling_timeout = polling_timeout
     args.write(self._oprot)
     self._oprot.writeMessageEnd()
     self._oprot.trans.flush()
@@ -701,7 +701,7 @@ class Processor(Iface, TProcessor):
     args.read(iprot)
     iprot.readMessageEnd()
     result = fetchOperations_result()
-    result.success = self._handler.fetchOperations(args.param1, args.param2)
+    result.success = self._handler.fetchOperations(args.last_op_code, args.polling_timeout)
     oprot.writeMessageBegin("fetchOperations", TMessageType.REPLY, seqid)
     result.write(oprot)
     oprot.writeMessageEnd()
@@ -1452,10 +1452,10 @@ class getAllContactIds_result:
       if fid == 0:
         if ftype == TType.LIST:
           self.success = []
-          (_etype86, _size83) = iprot.readListBegin()
-          for _i87 in xrange(_size83):
-            _elem88 = iprot.readString();
-            self.success.append(_elem88)
+          (_etype79, _size76) = iprot.readListBegin()
+          for _i80 in xrange(_size76):
+            _elem81 = iprot.readString();
+            self.success.append(_elem81)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
@@ -1472,8 +1472,8 @@ class getAllContactIds_result:
     if self.success is not None:
       oprot.writeFieldBegin('success', TType.LIST, 0)
       oprot.writeListBegin(TType.STRING, len(self.success))
-      for iter89 in self.success:
-        oprot.writeString(iter89)
+      for iter82 in self.success:
+        oprot.writeString(iter82)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
@@ -1521,10 +1521,10 @@ class getContacts_args:
       if fid == 2:
         if ftype == TType.LIST:
           self.contact_ids = []
-          (_etype93, _size90) = iprot.readListBegin()
-          for _i94 in xrange(_size90):
-            _elem95 = iprot.readString();
-            self.contact_ids.append(_elem95)
+          (_etype86, _size83) = iprot.readListBegin()
+          for _i87 in xrange(_size83):
+            _elem88 = iprot.readString();
+            self.contact_ids.append(_elem88)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
@@ -1541,8 +1541,8 @@ class getContacts_args:
     if self.contact_ids is not None:
       oprot.writeFieldBegin('contact_ids', TType.LIST, 2)
       oprot.writeListBegin(TType.STRING, len(self.contact_ids))
-      for iter96 in self.contact_ids:
-        oprot.writeString(iter96)
+      for iter89 in self.contact_ids:
+        oprot.writeString(iter89)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
@@ -1588,11 +1588,11 @@ class getContacts_result:
       if fid == 0:
         if ftype == TType.LIST:
           self.success = []
-          (_etype100, _size97) = iprot.readListBegin()
-          for _i101 in xrange(_size97):
-            _elem102 = contact()
-            _elem102.read(iprot)
-            self.success.append(_elem102)
+          (_etype93, _size90) = iprot.readListBegin()
+          for _i94 in xrange(_size90):
+            _elem95 = contact()
+            _elem95.read(iprot)
+            self.success.append(_elem95)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
@@ -1609,8 +1609,8 @@ class getContacts_result:
     if self.success is not None:
       oprot.writeFieldBegin('success', TType.LIST, 0)
       oprot.writeListBegin(TType.STRUCT, len(self.success))
-      for iter103 in self.success:
-        iter103.write(oprot)
+      for iter96 in self.success:
+        iter96.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
@@ -2033,20 +2033,20 @@ class getNextMessages_result:
 class fetchOperations_args:
   """
   Attributes:
-   - param1
-   - param2
+   - last_op_code
+   - polling_timeout
   """
 
   thrift_spec = (
     None, # 0
     None, # 1
-    (2, TType.I64, 'param1', None, None, ), # 2
-    (3, TType.I32, 'param2', None, None, ), # 3
+    (2, TType.I64, 'last_op_code', None, None, ), # 2
+    (3, TType.I32, 'polling_timeout', None, None, ), # 3
   )
 
-  def __init__(self, param1=None, param2=None,):
-    self.param1 = param1
-    self.param2 = param2
+  def __init__(self, last_op_code=None, polling_timeout=None,):
+    self.last_op_code = last_op_code
+    self.polling_timeout = polling_timeout
 
   def read(self, iprot):
     if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
@@ -2059,12 +2059,12 @@ class fetchOperations_args:
         break
       if fid == 2:
         if ftype == TType.I64:
-          self.param1 = iprot.readI64();
+          self.last_op_code = iprot.readI64();
         else:
           iprot.skip(ftype)
       elif fid == 3:
         if ftype == TType.I32:
-          self.param2 = iprot.readI32();
+          self.polling_timeout = iprot.readI32();
         else:
           iprot.skip(ftype)
       else:
@@ -2077,13 +2077,13 @@ class fetchOperations_args:
       oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
       return
     oprot.writeStructBegin('fetchOperations_args')
-    if self.param1 is not None:
-      oprot.writeFieldBegin('param1', TType.I64, 2)
-      oprot.writeI64(self.param1)
+    if self.last_op_code is not None:
+      oprot.writeFieldBegin('last_op_code', TType.I64, 2)
+      oprot.writeI64(self.last_op_code)
       oprot.writeFieldEnd()
-    if self.param2 is not None:
-      oprot.writeFieldBegin('param2', TType.I32, 3)
-      oprot.writeI32(self.param2)
+    if self.polling_timeout is not None:
+      oprot.writeFieldBegin('polling_timeout', TType.I32, 3)
+      oprot.writeI32(self.polling_timeout)
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
     oprot.writeStructEnd()
@@ -2110,7 +2110,7 @@ class fetchOperations_result:
   """
 
   thrift_spec = (
-    (0, TType.STRUCT, 'success', (fetchOperationsResult, fetchOperationsResult.thrift_spec), None, ), # 0
+    (0, TType.LIST, 'success', (TType.STRUCT,(fetch_struct, fetch_struct.thrift_spec)), None, ), # 0
   )
 
   def __init__(self, success=None,):
@@ -2126,9 +2126,14 @@ class fetchOperations_result:
       if ftype == TType.STOP:
         break
       if fid == 0:
-        if ftype == TType.STRUCT:
-          self.success = fetchOperationsResult()
-          self.success.read(iprot)
+        if ftype == TType.LIST:
+          self.success = []
+          (_etype100, _size97) = iprot.readListBegin()
+          for _i101 in xrange(_size97):
+            _elem102 = fetch_struct()
+            _elem102.read(iprot)
+            self.success.append(_elem102)
+          iprot.readListEnd()
         else:
           iprot.skip(ftype)
       else:
@@ -2142,8 +2147,11 @@ class fetchOperations_result:
       return
     oprot.writeStructBegin('fetchOperations_result')
     if self.success is not None:
-      oprot.writeFieldBegin('success', TType.STRUCT, 0)
-      self.success.write(oprot)
+      oprot.writeFieldBegin('success', TType.LIST, 0)
+      oprot.writeListBegin(TType.STRUCT, len(self.success))
+      for iter103 in self.success:
+        iter103.write(oprot)
+      oprot.writeListEnd()
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
     oprot.writeStructEnd()
