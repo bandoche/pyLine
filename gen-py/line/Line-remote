@@ -29,6 +29,14 @@ if len(sys.argv) <= 1 or sys.argv[1] == '--help':
   print '  i64 getServerTime()'
   print '  i64 getLastOpRevision()'
   print '   getAllContactIds()'
+  print '   getContacts( contact_ids)'
+  print '  getMessageBoxCompactWrapUpListResult getMessageBoxCompactWrapUpList(i32 param1, i32 param2)'
+  print '  sendMessageResult sendMessage(i32 var1, send_msg_str msgs)'
+  print '  getNextMessagesResult getNextMessages(string room_key33, i64 timecode)'
+  print '  fetchOperationsResult fetchOperations(i64 param1, i32 param2)'
+  print '  void sendChatChecked(i32 param1, string room_key33, string timecode)'
+  print '  getRoomResult getRoom(string room_key33)'
+  print '   getRecentMessages(string room_key33, i32 param1)'
   print ''
   sys.exit(0)
 
@@ -115,6 +123,54 @@ elif cmd == 'getAllContactIds':
     print 'getAllContactIds requires 0 args'
     sys.exit(1)
   pp.pprint(client.getAllContactIds())
+
+elif cmd == 'getContacts':
+  if len(args) != 1:
+    print 'getContacts requires 1 args'
+    sys.exit(1)
+  pp.pprint(client.getContacts(eval(args[0]),))
+
+elif cmd == 'getMessageBoxCompactWrapUpList':
+  if len(args) != 2:
+    print 'getMessageBoxCompactWrapUpList requires 2 args'
+    sys.exit(1)
+  pp.pprint(client.getMessageBoxCompactWrapUpList(eval(args[0]),eval(args[1]),))
+
+elif cmd == 'sendMessage':
+  if len(args) != 2:
+    print 'sendMessage requires 2 args'
+    sys.exit(1)
+  pp.pprint(client.sendMessage(eval(args[0]),eval(args[1]),))
+
+elif cmd == 'getNextMessages':
+  if len(args) != 2:
+    print 'getNextMessages requires 2 args'
+    sys.exit(1)
+  pp.pprint(client.getNextMessages(args[0],eval(args[1]),))
+
+elif cmd == 'fetchOperations':
+  if len(args) != 2:
+    print 'fetchOperations requires 2 args'
+    sys.exit(1)
+  pp.pprint(client.fetchOperations(eval(args[0]),eval(args[1]),))
+
+elif cmd == 'sendChatChecked':
+  if len(args) != 3:
+    print 'sendChatChecked requires 3 args'
+    sys.exit(1)
+  pp.pprint(client.sendChatChecked(eval(args[0]),args[1],args[2],))
+
+elif cmd == 'getRoom':
+  if len(args) != 1:
+    print 'getRoom requires 1 args'
+    sys.exit(1)
+  pp.pprint(client.getRoom(args[0],))
+
+elif cmd == 'getRecentMessages':
+  if len(args) != 2:
+    print 'getRecentMessages requires 2 args'
+    sys.exit(1)
+  pp.pprint(client.getRecentMessages(args[0],eval(args[1]),))
 
 else:
   print 'Unrecognized method %s' % cmd

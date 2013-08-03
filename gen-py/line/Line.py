@@ -52,6 +52,69 @@ class Iface:
   def getAllContactIds(self, ):
     pass
 
+  def getContacts(self, contact_ids):
+    """
+    Parameters:
+     - contact_ids
+    """
+    pass
+
+  def getMessageBoxCompactWrapUpList(self, param1, param2):
+    """
+    Parameters:
+     - param1
+     - param2
+    """
+    pass
+
+  def sendMessage(self, var1, msgs):
+    """
+    Parameters:
+     - var1
+     - msgs
+    """
+    pass
+
+  def getNextMessages(self, room_key33, timecode):
+    """
+    Parameters:
+     - room_key33
+     - timecode
+    """
+    pass
+
+  def fetchOperations(self, param1, param2):
+    """
+    Parameters:
+     - param1
+     - param2
+    """
+    pass
+
+  def sendChatChecked(self, param1, room_key33, timecode):
+    """
+    Parameters:
+     - param1
+     - room_key33
+     - timecode
+    """
+    pass
+
+  def getRoom(self, room_key33):
+    """
+    Parameters:
+     - room_key33
+    """
+    pass
+
+  def getRecentMessages(self, room_key33, param1):
+    """
+    Parameters:
+     - room_key33
+     - param1
+    """
+    pass
+
 
 class Client(Iface):
   def __init__(self, iprot, oprot=None):
@@ -236,6 +299,258 @@ class Client(Iface):
       return result.success
     raise TApplicationException(TApplicationException.MISSING_RESULT, "getAllContactIds failed: unknown result");
 
+  def getContacts(self, contact_ids):
+    """
+    Parameters:
+     - contact_ids
+    """
+    self.send_getContacts(contact_ids)
+    return self.recv_getContacts()
+
+  def send_getContacts(self, contact_ids):
+    self._oprot.writeMessageBegin('getContacts', TMessageType.CALL, self._seqid)
+    args = getContacts_args()
+    args.contact_ids = contact_ids
+    args.write(self._oprot)
+    self._oprot.writeMessageEnd()
+    self._oprot.trans.flush()
+
+  def recv_getContacts(self, ):
+    (fname, mtype, rseqid) = self._iprot.readMessageBegin()
+    if mtype == TMessageType.EXCEPTION:
+      x = TApplicationException()
+      x.read(self._iprot)
+      self._iprot.readMessageEnd()
+      raise x
+    result = getContacts_result()
+    result.read(self._iprot)
+    self._iprot.readMessageEnd()
+    if result.success is not None:
+      return result.success
+    raise TApplicationException(TApplicationException.MISSING_RESULT, "getContacts failed: unknown result");
+
+  def getMessageBoxCompactWrapUpList(self, param1, param2):
+    """
+    Parameters:
+     - param1
+     - param2
+    """
+    self.send_getMessageBoxCompactWrapUpList(param1, param2)
+    return self.recv_getMessageBoxCompactWrapUpList()
+
+  def send_getMessageBoxCompactWrapUpList(self, param1, param2):
+    self._oprot.writeMessageBegin('getMessageBoxCompactWrapUpList', TMessageType.CALL, self._seqid)
+    args = getMessageBoxCompactWrapUpList_args()
+    args.param1 = param1
+    args.param2 = param2
+    args.write(self._oprot)
+    self._oprot.writeMessageEnd()
+    self._oprot.trans.flush()
+
+  def recv_getMessageBoxCompactWrapUpList(self, ):
+    (fname, mtype, rseqid) = self._iprot.readMessageBegin()
+    if mtype == TMessageType.EXCEPTION:
+      x = TApplicationException()
+      x.read(self._iprot)
+      self._iprot.readMessageEnd()
+      raise x
+    result = getMessageBoxCompactWrapUpList_result()
+    result.read(self._iprot)
+    self._iprot.readMessageEnd()
+    if result.success is not None:
+      return result.success
+    raise TApplicationException(TApplicationException.MISSING_RESULT, "getMessageBoxCompactWrapUpList failed: unknown result");
+
+  def sendMessage(self, var1, msgs):
+    """
+    Parameters:
+     - var1
+     - msgs
+    """
+    self.send_sendMessage(var1, msgs)
+    return self.recv_sendMessage()
+
+  def send_sendMessage(self, var1, msgs):
+    self._oprot.writeMessageBegin('sendMessage', TMessageType.CALL, self._seqid)
+    args = sendMessage_args()
+    args.var1 = var1
+    args.msgs = msgs
+    args.write(self._oprot)
+    self._oprot.writeMessageEnd()
+    self._oprot.trans.flush()
+
+  def recv_sendMessage(self, ):
+    (fname, mtype, rseqid) = self._iprot.readMessageBegin()
+    if mtype == TMessageType.EXCEPTION:
+      x = TApplicationException()
+      x.read(self._iprot)
+      self._iprot.readMessageEnd()
+      raise x
+    result = sendMessage_result()
+    result.read(self._iprot)
+    self._iprot.readMessageEnd()
+    if result.success is not None:
+      return result.success
+    raise TApplicationException(TApplicationException.MISSING_RESULT, "sendMessage failed: unknown result");
+
+  def getNextMessages(self, room_key33, timecode):
+    """
+    Parameters:
+     - room_key33
+     - timecode
+    """
+    self.send_getNextMessages(room_key33, timecode)
+    return self.recv_getNextMessages()
+
+  def send_getNextMessages(self, room_key33, timecode):
+    self._oprot.writeMessageBegin('getNextMessages', TMessageType.CALL, self._seqid)
+    args = getNextMessages_args()
+    args.room_key33 = room_key33
+    args.timecode = timecode
+    args.write(self._oprot)
+    self._oprot.writeMessageEnd()
+    self._oprot.trans.flush()
+
+  def recv_getNextMessages(self, ):
+    (fname, mtype, rseqid) = self._iprot.readMessageBegin()
+    if mtype == TMessageType.EXCEPTION:
+      x = TApplicationException()
+      x.read(self._iprot)
+      self._iprot.readMessageEnd()
+      raise x
+    result = getNextMessages_result()
+    result.read(self._iprot)
+    self._iprot.readMessageEnd()
+    if result.success is not None:
+      return result.success
+    raise TApplicationException(TApplicationException.MISSING_RESULT, "getNextMessages failed: unknown result");
+
+  def fetchOperations(self, param1, param2):
+    """
+    Parameters:
+     - param1
+     - param2
+    """
+    self.send_fetchOperations(param1, param2)
+    return self.recv_fetchOperations()
+
+  def send_fetchOperations(self, param1, param2):
+    self._oprot.writeMessageBegin('fetchOperations', TMessageType.CALL, self._seqid)
+    args = fetchOperations_args()
+    args.param1 = param1
+    args.param2 = param2
+    args.write(self._oprot)
+    self._oprot.writeMessageEnd()
+    self._oprot.trans.flush()
+
+  def recv_fetchOperations(self, ):
+    (fname, mtype, rseqid) = self._iprot.readMessageBegin()
+    if mtype == TMessageType.EXCEPTION:
+      x = TApplicationException()
+      x.read(self._iprot)
+      self._iprot.readMessageEnd()
+      raise x
+    result = fetchOperations_result()
+    result.read(self._iprot)
+    self._iprot.readMessageEnd()
+    if result.success is not None:
+      return result.success
+    raise TApplicationException(TApplicationException.MISSING_RESULT, "fetchOperations failed: unknown result");
+
+  def sendChatChecked(self, param1, room_key33, timecode):
+    """
+    Parameters:
+     - param1
+     - room_key33
+     - timecode
+    """
+    self.send_sendChatChecked(param1, room_key33, timecode)
+    self.recv_sendChatChecked()
+
+  def send_sendChatChecked(self, param1, room_key33, timecode):
+    self._oprot.writeMessageBegin('sendChatChecked', TMessageType.CALL, self._seqid)
+    args = sendChatChecked_args()
+    args.param1 = param1
+    args.room_key33 = room_key33
+    args.timecode = timecode
+    args.write(self._oprot)
+    self._oprot.writeMessageEnd()
+    self._oprot.trans.flush()
+
+  def recv_sendChatChecked(self, ):
+    (fname, mtype, rseqid) = self._iprot.readMessageBegin()
+    if mtype == TMessageType.EXCEPTION:
+      x = TApplicationException()
+      x.read(self._iprot)
+      self._iprot.readMessageEnd()
+      raise x
+    result = sendChatChecked_result()
+    result.read(self._iprot)
+    self._iprot.readMessageEnd()
+    return
+
+  def getRoom(self, room_key33):
+    """
+    Parameters:
+     - room_key33
+    """
+    self.send_getRoom(room_key33)
+    return self.recv_getRoom()
+
+  def send_getRoom(self, room_key33):
+    self._oprot.writeMessageBegin('getRoom', TMessageType.CALL, self._seqid)
+    args = getRoom_args()
+    args.room_key33 = room_key33
+    args.write(self._oprot)
+    self._oprot.writeMessageEnd()
+    self._oprot.trans.flush()
+
+  def recv_getRoom(self, ):
+    (fname, mtype, rseqid) = self._iprot.readMessageBegin()
+    if mtype == TMessageType.EXCEPTION:
+      x = TApplicationException()
+      x.read(self._iprot)
+      self._iprot.readMessageEnd()
+      raise x
+    result = getRoom_result()
+    result.read(self._iprot)
+    self._iprot.readMessageEnd()
+    if result.success is not None:
+      return result.success
+    raise TApplicationException(TApplicationException.MISSING_RESULT, "getRoom failed: unknown result");
+
+  def getRecentMessages(self, room_key33, param1):
+    """
+    Parameters:
+     - room_key33
+     - param1
+    """
+    self.send_getRecentMessages(room_key33, param1)
+    return self.recv_getRecentMessages()
+
+  def send_getRecentMessages(self, room_key33, param1):
+    self._oprot.writeMessageBegin('getRecentMessages', TMessageType.CALL, self._seqid)
+    args = getRecentMessages_args()
+    args.room_key33 = room_key33
+    args.param1 = param1
+    args.write(self._oprot)
+    self._oprot.writeMessageEnd()
+    self._oprot.trans.flush()
+
+  def recv_getRecentMessages(self, ):
+    (fname, mtype, rseqid) = self._iprot.readMessageBegin()
+    if mtype == TMessageType.EXCEPTION:
+      x = TApplicationException()
+      x.read(self._iprot)
+      self._iprot.readMessageEnd()
+      raise x
+    result = getRecentMessages_result()
+    result.read(self._iprot)
+    self._iprot.readMessageEnd()
+    if result.success is not None:
+      return result.success
+    raise TApplicationException(TApplicationException.MISSING_RESULT, "getRecentMessages failed: unknown result");
+
 
 class Processor(Iface, TProcessor):
   def __init__(self, handler):
@@ -247,6 +562,14 @@ class Processor(Iface, TProcessor):
     self._processMap["getServerTime"] = Processor.process_getServerTime
     self._processMap["getLastOpRevision"] = Processor.process_getLastOpRevision
     self._processMap["getAllContactIds"] = Processor.process_getAllContactIds
+    self._processMap["getContacts"] = Processor.process_getContacts
+    self._processMap["getMessageBoxCompactWrapUpList"] = Processor.process_getMessageBoxCompactWrapUpList
+    self._processMap["sendMessage"] = Processor.process_sendMessage
+    self._processMap["getNextMessages"] = Processor.process_getNextMessages
+    self._processMap["fetchOperations"] = Processor.process_fetchOperations
+    self._processMap["sendChatChecked"] = Processor.process_sendChatChecked
+    self._processMap["getRoom"] = Processor.process_getRoom
+    self._processMap["getRecentMessages"] = Processor.process_getRecentMessages
 
   def process(self, iprot, oprot):
     (name, type, seqid) = iprot.readMessageBegin()
@@ -325,6 +648,94 @@ class Processor(Iface, TProcessor):
     result = getAllContactIds_result()
     result.success = self._handler.getAllContactIds()
     oprot.writeMessageBegin("getAllContactIds", TMessageType.REPLY, seqid)
+    result.write(oprot)
+    oprot.writeMessageEnd()
+    oprot.trans.flush()
+
+  def process_getContacts(self, seqid, iprot, oprot):
+    args = getContacts_args()
+    args.read(iprot)
+    iprot.readMessageEnd()
+    result = getContacts_result()
+    result.success = self._handler.getContacts(args.contact_ids)
+    oprot.writeMessageBegin("getContacts", TMessageType.REPLY, seqid)
+    result.write(oprot)
+    oprot.writeMessageEnd()
+    oprot.trans.flush()
+
+  def process_getMessageBoxCompactWrapUpList(self, seqid, iprot, oprot):
+    args = getMessageBoxCompactWrapUpList_args()
+    args.read(iprot)
+    iprot.readMessageEnd()
+    result = getMessageBoxCompactWrapUpList_result()
+    result.success = self._handler.getMessageBoxCompactWrapUpList(args.param1, args.param2)
+    oprot.writeMessageBegin("getMessageBoxCompactWrapUpList", TMessageType.REPLY, seqid)
+    result.write(oprot)
+    oprot.writeMessageEnd()
+    oprot.trans.flush()
+
+  def process_sendMessage(self, seqid, iprot, oprot):
+    args = sendMessage_args()
+    args.read(iprot)
+    iprot.readMessageEnd()
+    result = sendMessage_result()
+    result.success = self._handler.sendMessage(args.var1, args.msgs)
+    oprot.writeMessageBegin("sendMessage", TMessageType.REPLY, seqid)
+    result.write(oprot)
+    oprot.writeMessageEnd()
+    oprot.trans.flush()
+
+  def process_getNextMessages(self, seqid, iprot, oprot):
+    args = getNextMessages_args()
+    args.read(iprot)
+    iprot.readMessageEnd()
+    result = getNextMessages_result()
+    result.success = self._handler.getNextMessages(args.room_key33, args.timecode)
+    oprot.writeMessageBegin("getNextMessages", TMessageType.REPLY, seqid)
+    result.write(oprot)
+    oprot.writeMessageEnd()
+    oprot.trans.flush()
+
+  def process_fetchOperations(self, seqid, iprot, oprot):
+    args = fetchOperations_args()
+    args.read(iprot)
+    iprot.readMessageEnd()
+    result = fetchOperations_result()
+    result.success = self._handler.fetchOperations(args.param1, args.param2)
+    oprot.writeMessageBegin("fetchOperations", TMessageType.REPLY, seqid)
+    result.write(oprot)
+    oprot.writeMessageEnd()
+    oprot.trans.flush()
+
+  def process_sendChatChecked(self, seqid, iprot, oprot):
+    args = sendChatChecked_args()
+    args.read(iprot)
+    iprot.readMessageEnd()
+    result = sendChatChecked_result()
+    self._handler.sendChatChecked(args.param1, args.room_key33, args.timecode)
+    oprot.writeMessageBegin("sendChatChecked", TMessageType.REPLY, seqid)
+    result.write(oprot)
+    oprot.writeMessageEnd()
+    oprot.trans.flush()
+
+  def process_getRoom(self, seqid, iprot, oprot):
+    args = getRoom_args()
+    args.read(iprot)
+    iprot.readMessageEnd()
+    result = getRoom_result()
+    result.success = self._handler.getRoom(args.room_key33)
+    oprot.writeMessageBegin("getRoom", TMessageType.REPLY, seqid)
+    result.write(oprot)
+    oprot.writeMessageEnd()
+    oprot.trans.flush()
+
+  def process_getRecentMessages(self, seqid, iprot, oprot):
+    args = getRecentMessages_args()
+    args.read(iprot)
+    iprot.readMessageEnd()
+    result = getRecentMessages_result()
+    result.success = self._handler.getRecentMessages(args.room_key33, args.param1)
+    oprot.writeMessageBegin("getRecentMessages", TMessageType.REPLY, seqid)
     result.write(oprot)
     oprot.writeMessageEnd()
     oprot.trans.flush()
@@ -1041,10 +1452,10 @@ class getAllContactIds_result:
       if fid == 0:
         if ftype == TType.LIST:
           self.success = []
-          (_etype3, _size0) = iprot.readListBegin()
-          for _i4 in xrange(_size0):
-            _elem5 = iprot.readString();
-            self.success.append(_elem5)
+          (_etype86, _size83) = iprot.readListBegin()
+          for _i87 in xrange(_size83):
+            _elem88 = iprot.readString();
+            self.success.append(_elem88)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
@@ -1061,8 +1472,1065 @@ class getAllContactIds_result:
     if self.success is not None:
       oprot.writeFieldBegin('success', TType.LIST, 0)
       oprot.writeListBegin(TType.STRING, len(self.success))
-      for iter6 in self.success:
-        oprot.writeString(iter6)
+      for iter89 in self.success:
+        oprot.writeString(iter89)
+      oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    return
+
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
+class getContacts_args:
+  """
+  Attributes:
+   - contact_ids
+  """
+
+  thrift_spec = (
+    None, # 0
+    None, # 1
+    (2, TType.LIST, 'contact_ids', (TType.STRING,None), None, ), # 2
+  )
+
+  def __init__(self, contact_ids=None,):
+    self.contact_ids = contact_ids
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 2:
+        if ftype == TType.LIST:
+          self.contact_ids = []
+          (_etype93, _size90) = iprot.readListBegin()
+          for _i94 in xrange(_size90):
+            _elem95 = iprot.readString();
+            self.contact_ids.append(_elem95)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('getContacts_args')
+    if self.contact_ids is not None:
+      oprot.writeFieldBegin('contact_ids', TType.LIST, 2)
+      oprot.writeListBegin(TType.STRING, len(self.contact_ids))
+      for iter96 in self.contact_ids:
+        oprot.writeString(iter96)
+      oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    return
+
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
+class getContacts_result:
+  """
+  Attributes:
+   - success
+  """
+
+  thrift_spec = (
+    (0, TType.LIST, 'success', (TType.STRUCT,(contact, contact.thrift_spec)), None, ), # 0
+  )
+
+  def __init__(self, success=None,):
+    self.success = success
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 0:
+        if ftype == TType.LIST:
+          self.success = []
+          (_etype100, _size97) = iprot.readListBegin()
+          for _i101 in xrange(_size97):
+            _elem102 = contact()
+            _elem102.read(iprot)
+            self.success.append(_elem102)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('getContacts_result')
+    if self.success is not None:
+      oprot.writeFieldBegin('success', TType.LIST, 0)
+      oprot.writeListBegin(TType.STRUCT, len(self.success))
+      for iter103 in self.success:
+        iter103.write(oprot)
+      oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    return
+
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
+class getMessageBoxCompactWrapUpList_args:
+  """
+  Attributes:
+   - param1
+   - param2
+  """
+
+  thrift_spec = (
+    None, # 0
+    None, # 1
+    (2, TType.I32, 'param1', None, None, ), # 2
+    (3, TType.I32, 'param2', None, None, ), # 3
+  )
+
+  def __init__(self, param1=None, param2=None,):
+    self.param1 = param1
+    self.param2 = param2
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 2:
+        if ftype == TType.I32:
+          self.param1 = iprot.readI32();
+        else:
+          iprot.skip(ftype)
+      elif fid == 3:
+        if ftype == TType.I32:
+          self.param2 = iprot.readI32();
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('getMessageBoxCompactWrapUpList_args')
+    if self.param1 is not None:
+      oprot.writeFieldBegin('param1', TType.I32, 2)
+      oprot.writeI32(self.param1)
+      oprot.writeFieldEnd()
+    if self.param2 is not None:
+      oprot.writeFieldBegin('param2', TType.I32, 3)
+      oprot.writeI32(self.param2)
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    return
+
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
+class getMessageBoxCompactWrapUpList_result:
+  """
+  Attributes:
+   - success
+  """
+
+  thrift_spec = (
+    (0, TType.STRUCT, 'success', (getMessageBoxCompactWrapUpListResult, getMessageBoxCompactWrapUpListResult.thrift_spec), None, ), # 0
+  )
+
+  def __init__(self, success=None,):
+    self.success = success
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 0:
+        if ftype == TType.STRUCT:
+          self.success = getMessageBoxCompactWrapUpListResult()
+          self.success.read(iprot)
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('getMessageBoxCompactWrapUpList_result')
+    if self.success is not None:
+      oprot.writeFieldBegin('success', TType.STRUCT, 0)
+      self.success.write(oprot)
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    return
+
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
+class sendMessage_args:
+  """
+  Attributes:
+   - var1
+   - msgs
+  """
+
+  thrift_spec = (
+    None, # 0
+    (1, TType.I32, 'var1', None, None, ), # 1
+    (2, TType.STRUCT, 'msgs', (send_msg_str, send_msg_str.thrift_spec), None, ), # 2
+  )
+
+  def __init__(self, var1=None, msgs=None,):
+    self.var1 = var1
+    self.msgs = msgs
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 1:
+        if ftype == TType.I32:
+          self.var1 = iprot.readI32();
+        else:
+          iprot.skip(ftype)
+      elif fid == 2:
+        if ftype == TType.STRUCT:
+          self.msgs = send_msg_str()
+          self.msgs.read(iprot)
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('sendMessage_args')
+    if self.var1 is not None:
+      oprot.writeFieldBegin('var1', TType.I32, 1)
+      oprot.writeI32(self.var1)
+      oprot.writeFieldEnd()
+    if self.msgs is not None:
+      oprot.writeFieldBegin('msgs', TType.STRUCT, 2)
+      self.msgs.write(oprot)
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    return
+
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
+class sendMessage_result:
+  """
+  Attributes:
+   - success
+  """
+
+  thrift_spec = (
+    (0, TType.STRUCT, 'success', (sendMessageResult, sendMessageResult.thrift_spec), None, ), # 0
+  )
+
+  def __init__(self, success=None,):
+    self.success = success
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 0:
+        if ftype == TType.STRUCT:
+          self.success = sendMessageResult()
+          self.success.read(iprot)
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('sendMessage_result')
+    if self.success is not None:
+      oprot.writeFieldBegin('success', TType.STRUCT, 0)
+      self.success.write(oprot)
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    return
+
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
+class getNextMessages_args:
+  """
+  Attributes:
+   - room_key33
+   - timecode
+  """
+
+  thrift_spec = (
+    None, # 0
+    None, # 1
+    (2, TType.STRING, 'room_key33', None, None, ), # 2
+    (3, TType.I64, 'timecode', None, None, ), # 3
+  )
+
+  def __init__(self, room_key33=None, timecode=None,):
+    self.room_key33 = room_key33
+    self.timecode = timecode
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 2:
+        if ftype == TType.STRING:
+          self.room_key33 = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 3:
+        if ftype == TType.I64:
+          self.timecode = iprot.readI64();
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('getNextMessages_args')
+    if self.room_key33 is not None:
+      oprot.writeFieldBegin('room_key33', TType.STRING, 2)
+      oprot.writeString(self.room_key33)
+      oprot.writeFieldEnd()
+    if self.timecode is not None:
+      oprot.writeFieldBegin('timecode', TType.I64, 3)
+      oprot.writeI64(self.timecode)
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    return
+
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
+class getNextMessages_result:
+  """
+  Attributes:
+   - success
+  """
+
+  thrift_spec = (
+    (0, TType.STRUCT, 'success', (getNextMessagesResult, getNextMessagesResult.thrift_spec), None, ), # 0
+  )
+
+  def __init__(self, success=None,):
+    self.success = success
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 0:
+        if ftype == TType.STRUCT:
+          self.success = getNextMessagesResult()
+          self.success.read(iprot)
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('getNextMessages_result')
+    if self.success is not None:
+      oprot.writeFieldBegin('success', TType.STRUCT, 0)
+      self.success.write(oprot)
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    return
+
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
+class fetchOperations_args:
+  """
+  Attributes:
+   - param1
+   - param2
+  """
+
+  thrift_spec = (
+    None, # 0
+    None, # 1
+    (2, TType.I64, 'param1', None, None, ), # 2
+    (3, TType.I32, 'param2', None, None, ), # 3
+  )
+
+  def __init__(self, param1=None, param2=None,):
+    self.param1 = param1
+    self.param2 = param2
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 2:
+        if ftype == TType.I64:
+          self.param1 = iprot.readI64();
+        else:
+          iprot.skip(ftype)
+      elif fid == 3:
+        if ftype == TType.I32:
+          self.param2 = iprot.readI32();
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('fetchOperations_args')
+    if self.param1 is not None:
+      oprot.writeFieldBegin('param1', TType.I64, 2)
+      oprot.writeI64(self.param1)
+      oprot.writeFieldEnd()
+    if self.param2 is not None:
+      oprot.writeFieldBegin('param2', TType.I32, 3)
+      oprot.writeI32(self.param2)
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    return
+
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
+class fetchOperations_result:
+  """
+  Attributes:
+   - success
+  """
+
+  thrift_spec = (
+    (0, TType.STRUCT, 'success', (fetchOperationsResult, fetchOperationsResult.thrift_spec), None, ), # 0
+  )
+
+  def __init__(self, success=None,):
+    self.success = success
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 0:
+        if ftype == TType.STRUCT:
+          self.success = fetchOperationsResult()
+          self.success.read(iprot)
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('fetchOperations_result')
+    if self.success is not None:
+      oprot.writeFieldBegin('success', TType.STRUCT, 0)
+      self.success.write(oprot)
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    return
+
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
+class sendChatChecked_args:
+  """
+  Attributes:
+   - param1
+   - room_key33
+   - timecode
+  """
+
+  thrift_spec = (
+    None, # 0
+    (1, TType.I32, 'param1', None, None, ), # 1
+    (2, TType.STRING, 'room_key33', None, None, ), # 2
+    (3, TType.STRING, 'timecode', None, None, ), # 3
+  )
+
+  def __init__(self, param1=None, room_key33=None, timecode=None,):
+    self.param1 = param1
+    self.room_key33 = room_key33
+    self.timecode = timecode
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 1:
+        if ftype == TType.I32:
+          self.param1 = iprot.readI32();
+        else:
+          iprot.skip(ftype)
+      elif fid == 2:
+        if ftype == TType.STRING:
+          self.room_key33 = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 3:
+        if ftype == TType.STRING:
+          self.timecode = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('sendChatChecked_args')
+    if self.param1 is not None:
+      oprot.writeFieldBegin('param1', TType.I32, 1)
+      oprot.writeI32(self.param1)
+      oprot.writeFieldEnd()
+    if self.room_key33 is not None:
+      oprot.writeFieldBegin('room_key33', TType.STRING, 2)
+      oprot.writeString(self.room_key33)
+      oprot.writeFieldEnd()
+    if self.timecode is not None:
+      oprot.writeFieldBegin('timecode', TType.STRING, 3)
+      oprot.writeString(self.timecode)
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    return
+
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
+class sendChatChecked_result:
+
+  thrift_spec = (
+  )
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('sendChatChecked_result')
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    return
+
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
+class getRoom_args:
+  """
+  Attributes:
+   - room_key33
+  """
+
+  thrift_spec = (
+    None, # 0
+    None, # 1
+    (2, TType.STRING, 'room_key33', None, None, ), # 2
+  )
+
+  def __init__(self, room_key33=None,):
+    self.room_key33 = room_key33
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 2:
+        if ftype == TType.STRING:
+          self.room_key33 = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('getRoom_args')
+    if self.room_key33 is not None:
+      oprot.writeFieldBegin('room_key33', TType.STRING, 2)
+      oprot.writeString(self.room_key33)
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    return
+
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
+class getRoom_result:
+  """
+  Attributes:
+   - success
+  """
+
+  thrift_spec = (
+    (0, TType.STRUCT, 'success', (getRoomResult, getRoomResult.thrift_spec), None, ), # 0
+  )
+
+  def __init__(self, success=None,):
+    self.success = success
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 0:
+        if ftype == TType.STRUCT:
+          self.success = getRoomResult()
+          self.success.read(iprot)
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('getRoom_result')
+    if self.success is not None:
+      oprot.writeFieldBegin('success', TType.STRUCT, 0)
+      self.success.write(oprot)
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    return
+
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
+class getRecentMessages_args:
+  """
+  Attributes:
+   - room_key33
+   - param1
+  """
+
+  thrift_spec = (
+    None, # 0
+    None, # 1
+    (2, TType.STRING, 'room_key33', None, None, ), # 2
+    (3, TType.I32, 'param1', None, None, ), # 3
+  )
+
+  def __init__(self, room_key33=None, param1=None,):
+    self.room_key33 = room_key33
+    self.param1 = param1
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 2:
+        if ftype == TType.STRING:
+          self.room_key33 = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 3:
+        if ftype == TType.I32:
+          self.param1 = iprot.readI32();
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('getRecentMessages_args')
+    if self.room_key33 is not None:
+      oprot.writeFieldBegin('room_key33', TType.STRING, 2)
+      oprot.writeString(self.room_key33)
+      oprot.writeFieldEnd()
+    if self.param1 is not None:
+      oprot.writeFieldBegin('param1', TType.I32, 3)
+      oprot.writeI32(self.param1)
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    return
+
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
+class getRecentMessages_result:
+  """
+  Attributes:
+   - success
+  """
+
+  thrift_spec = (
+    (0, TType.LIST, 'success', (TType.STRUCT,(msg_str, msg_str.thrift_spec)), None, ), # 0
+  )
+
+  def __init__(self, success=None,):
+    self.success = success
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 0:
+        if ftype == TType.LIST:
+          self.success = []
+          (_etype107, _size104) = iprot.readListBegin()
+          for _i108 in xrange(_size104):
+            _elem109 = msg_str()
+            _elem109.read(iprot)
+            self.success.append(_elem109)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('getRecentMessages_result')
+    if self.success is not None:
+      oprot.writeFieldBegin('success', TType.LIST, 0)
+      oprot.writeListBegin(TType.STRUCT, len(self.success))
+      for iter110 in self.success:
+        iter110.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
