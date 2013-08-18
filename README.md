@@ -17,7 +17,13 @@ NHN Line protocol with Python and thrift [warning: dirty]
 * MITMProxy with Reversed proxy to original domain (pip install mitmproxy)
 * Line application
 
+##Progress
+* Most thrift function defined (Login, Profile, Room List, Send Message, Long Polling)
+* Basic login script (.py)
+* Login packet encrypted
+* Just discoverd how protocol designed
+
+
 ##TODO
 * Everything
-* Just discoverd how protocol designed
-* And how Login packet encrypted
+* More thrift function definition (Sticker, Make group chat, etc)
