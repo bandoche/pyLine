@@ -172,7 +172,6 @@ PublicKey(
 */
 		// 요청시 같은 값 sqlite3에 저장하고 보여주기 
 		$result = $body;
-		// result = {"session_key":"ZUo9bfjTdnLrmIc0","rsa_key":"100007824,59C0251254DA1E50000FC9D192E1BB90ABE452F84391DD5B41F7314CE2DBD21B5FC45759DB21F05ABEABCD87E96E4795D422E6DC5846407C1D45CDBECFF545B585AA72C5E282F5F7BA082AC724D72A379E1C65666354C18703E7412E129E9FCD1DEEB0DE75,010001"}
 		$naver_key = json_decode($result, true);
 		$session_key = $naver_key['session_key'];
 		$rsa_key = $naver_key['rsa_key'];
