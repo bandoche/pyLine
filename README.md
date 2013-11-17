@@ -27,3 +27,6 @@ NHN Line protocol with Python and thrift [warning: dirty]
 ##TODO
 * Everything
 * More thrift function definition (Sticker, Make group chat, etc)
+
+##Thanks to
+* Casey Hall
