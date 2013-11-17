@@ -53,7 +53,7 @@ struct getProfileResult {
   20: string name, # name in line profile
   21: string today_message, #not sure. today message seems to
   22: string msg_seq, 
-  24: string blank2, #unknown2
+  24: string comment, #thanks to Casey Hall
   31: bool flag1, #??
   32: bool flag2, #??
   33: string profile_url #39 byte (maybe dynamic) url for profile image - gd2.line.naver.jp/[[profile_url]]
